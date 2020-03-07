@@ -1,0 +1,8 @@
+.vscode
+env
+assets
+media
+db.sqlite3
+requirments.txt
+core
+staticfiles

@@ -1,0 +1,557 @@
+{% extends 'news/base.html' %}
+{% block body %}
+<div class="newstricker_inner">
+    <div class="trending"><strong>اہم خبریں</strong></div>
+    <div id="NewsTicker-rtl" class="owl-carousel owl-theme">
+        <div class="item">
+            <a href="#">حادثے میں شوہر کے جسم کا 90 فیصد جب کہ بیوی کے جسم کا 10 فیصد حصہ متاثر ہوا،32 سالہ شخص کی حالت
+                تشویشناک</a>
+        </div>
+    </div>
+</div>
+</div>
+<!-- START POST BLOCK SECTION -->
+<section class="slider-inner">
+    <div class="container">
+        <div class="row thm-margin">
+            <div class="col-xs-12 col-sm-6 col-md-6 thm-padding">
+                <div class="slider-wrapper">
+                    <div id="owl-slider-rtl" class="owl-carousel owl-theme">
+                        {% for carousel in carousels %}
+                        <div class="item">
+                            <div class="slider-post post-height-1">
+                                <a href="{% url 'news-detail' pk=carousel.pk %}" class="news-image"><img
+                                        src="{{ carousel.thumbnail.url }}" alt="" class="img-responsive"></a>
+                                <div class="post-text">
+                                    {% for cat in carousel.categories.all %}
+                                    <span class="post-category">{{ cat }}</span>
+                                    {% endfor %}
+                                    <h2><a href="">{{ carousel.title }}</a>
+                                    </h2>
+                                    <ul class="authar-info">
+                                        <li class="authar"><a href="#">by david hall</a></li>
+                                        <li class="date">May 29,2016</li>
+                                        <li class="view"><a href="#">25 views</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 thm-padding">
+                <div class="row slider-right-post thm-margin">
+                    {% for slider in sliders %}
+                    <div class="col-xs-6 col-sm-6 col-md-6 thm-padding">
+                        <div class="slider-post post-height-2">
+                            <a href="#" class="news-image"><img src="{{ slider.thumbnail.url }}" alt=""
+                                    class="img-responsive"></a>
+                            <div class="post-text">
+                                <span class="post-category">{{ slider.categories }}</span>
+                                <h4><a href="#">{{ slider.title }}</a></h4>
+                                <ul class="authar-info">
+                                    <li class="authar hidden-xs hidden-sm"><a href="#">by david hall</a></li>
+                                    <li class="hidden-xs">May 29,2017</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- END OF /. POST BLOCK SECTION -->
+<div class="container">
+    <div class="row row-m">
+        <!-- START MAIN CONTENT -->
+        <div class="col-sm-8 col-p main-content">
+            <div class="theiaStickySidebar">
+                <!-- START POST CATEGORY STYLE ONE (Popular news) -->
+                <div class="post-inner">
+                    <!--post header-->
+                    <div class="post-head">
+                        <h2 class="title" style="font-family: nafeesnastaleeqregular1;">قومی خبریں</h2>
+                    </div>
+                    <!-- post body -->
+                    <div class="post-body">
+                        <div class="">
+                            <!-- item one -->
+                            <div class="item">
+                                <div class="row">
+                                    <div class="col-sm-6 main-post-inner bord-right">
+                                        <article>
+                                            <figure>
+                                                <a href="#"><img
+                                                        src="http://inews.themepk.com/news/inews_v1.0/assets/images/340x215-1.jpg"
+                                                        height="242" width="345" alt="" class="img-responsive"></a>
+                                                <span class="post-category">Business</span>
+                                            </figure>
+                                            <div class="post-info">
+                                                <h3><a href="#">Fusce ac orci sagittis mattis magna ultrices libero</a>
+                                                </h3>
+                                                <ul class="authar-info">
+                                                    <li><i class="ti-timer"></i> May 15, 2016</li>
+                                                    <li class="like"><a href="#"><i class="ti-thumb-up"></i>15 likes</a>
+                                                    </li>
+                                                </ul>
+                                                <p>Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium
+                                                    doloremque laudantium, totamrem aperiam, eaque ipsa quae ab illo
+                                                    inventore</p>
+                                            </div>
+                                        </article>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="news-list">
+                                            <div class="news-list-item">
+                                                <div class="img-wrapper">
+                                                    <a href="#" class="thumb">
+                                                        <img src="http://inews.themepk.com/news/inews_v1.0/assets/images/115x85-1.jpg"
+                                                            alt="" class="img-responsive">
+                                                        <div class="link-icon">
+                                                            <i class="fa fa-camera"></i>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="post-info-2">
+                                                    <h5><a href="#" class="title">Cooking Recipes Anytime And
+                                                            Anywhere</a></h5>
+                                                    <ul class="authar-info">
+                                                        <li><i class="ti-timer"></i> May 15, 2016</li>
+                                                        <li class="like hidden-xs hidden-sm"><a href="#"><i
+                                                                    class="ti-thumb-up"></i>15 likes</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="news-list-item">
+                                                <div class="img-wrapper">
+                                                    <a href="#" class="thumb">
+                                                        <img src="http://inews.themepk.com/news/inews_v1.0/assets/images/115x85-2.jpg"
+                                                            alt="" class="img-responsive">
+                                                        <div class="link-icon">
+                                                            <i class="fa fa-play"></i>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="post-info-2">
+                                                    <h5><a href="#" class="title">Lorem Ipsum is simply dummy text of
+                                                            the.</a></h5>
+                                                    <ul class="authar-info">
+                                                        <li><i class="ti-timer"></i> May 15, 2016</li>
+                                                        <li class="like hidden-xs hidden-sm"><a href="#"><i
+                                                                    class="ti-thumb-up"></i>15 likes</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="news-list-item">
+                                                <div class="img-wrapper">
+                                                    <a href="#" class="thumb">
+                                                        <img src="http://inews.themepk.com/news/inews_v1.0/assets/images/115x85-3.jpg"
+                                                            alt="" class="img-responsive">
+                                                        <div class="link-icon">
+                                                            <i class="fa fa-camera"></i>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="post-info-2">
+                                                    <h5><a href="#" class="title">It is a long established fact that a
+                                                            reader will.</a></h5>
+                                                    <ul class="authar-info">
+                                                        <li><i class="ti-timer"></i> May 15, 2016</li>
+                                                        <li class="like hidden-xs hidden-sm"><a href="#"><i
+                                                                    class="ti-thumb-up"></i>15 likes</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="news-list-item">
+                                                <div class="img-wrapper">
+                                                    <a href="#" class="thumb">
+                                                        <img src="http://inews.themepk.com/news/inews_v1.0/assets/images/115x85-4.jpg"
+                                                            alt="" class="img-responsive">
+                                                        <div class="link-icon">
+                                                            <i class="fa fa-play"></i>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="post-info-2">
+                                                    <h5><a href="#" class="title">Contrary to popular belief, Lorem
+                                                            Ipsum is.</a></h5>
+                                                    <ul class="authar-info">
+                                                        <li><i class="ti-timer"></i> May 15, 2016</li>
+                                                        <li class="like hidden-xs hidden-sm"><a href="#"><i
+                                                                    class="ti-thumb-up"></i>15 likes</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- item two -->
+                            <div class="item">
+                                <div class="row">
+                                    <div class="col-sm-6 main-post-inner bord-right">
+                                        <article>
+                                            <figure>
+                                                <a href="#"><img
+                                                        src="http://inews.themepk.com/news/inews_v1.0/assets/images/340x215-2.jpg"
+                                                        height="242" width="345" alt="" class="img-responsive"></a>
+                                                <span class="post-category">Business</span>
+                                            </figure>
+                                            <div class="post-info">
+                                                <h3><a href="#">Fusce ac orci sagittis mattis magna ultrices libero</a>
+                                                </h3>
+                                                <ul class="authar-info">
+                                                    <li><i class="ti-timer"></i> May 15, 2016</li>
+                                                    <li class="like"><a href="#"><i class="ti-thumb-up"></i>15 likes</a>
+                                                    </li>
+                                                </ul>
+                                                <p> Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium
+                                                    doloremque laudantium, totamrem aperiam, eaque ipsa quae ab illo
+                                                    inventore</p>
+                                            </div>
+                                        </article>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="news-list">
+                                            <div class="news-list-item">
+                                                <div class="img-wrapper">
+                                                    <a href="#" class="thumb">
+                                                        <img src="http://inews.themepk.com/news/inews_v1.0/assets/images/115x85-4.jpg"
+                                                            alt="" class="img-responsive">
+                                                        <div class="link-icon">
+                                                            <i class="fa fa-camera"></i>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="post-info-2">
+                                                    <h5><a href="#" class="title">Cooking Recipes Anytime And
+                                                            Anywhere</a></h5>
+                                                    <ul class="authar-info">
+                                                        <li><i class="ti-timer"></i> May 15, 2016</li>
+                                                        <li class="like hidden-xs hidden-sm"><a href="#"><i
+                                                                    class="ti-thumb-up"></i>15 likes</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="news-list-item">
+                                                <div class="img-wrapper">
+                                                    <a href="#" class="thumb">
+                                                        <img src="http://inews.themepk.com/news/inews_v1.0/assets/images/115x85-3.jpg"
+                                                            alt="" class="img-responsive">
+                                                        <div class="link-icon">
+                                                            <i class="fa fa-camera"></i>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="post-info-2">
+                                                    <h5><a href="#" class="title">Cooking Recipes Anytime And
+                                                            Anywhere</a></h5>
+                                                    <ul class="authar-info">
+                                                        <li><i class="ti-timer"></i> May 15, 2016</li>
+                                                        <li class="like hidden-xs hidden-sm"><a href="#"><i
+                                                                    class="ti-thumb-up"></i>15 likes</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="news-list-item">
+                                                <div class="img-wrapper">
+                                                    <a href="#" class="thumb">
+                                                        <img src="http://inews.themepk.com/news/inews_v1.0/assets/images/115x85-2.jpg"
+                                                            alt="" class="img-responsive">
+                                                        <div class="link-icon">
+                                                            <i class="fa fa-camera"></i>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="post-info-2">
+                                                    <h5><a href="#" class="title">Cooking Recipes Anytime And
+                                                            Anywhere</a></h5>
+                                                    <ul class="authar-info">
+                                                        <li><i class="ti-timer"></i> May 15, 2016</li>
+                                                        <li class="like hidden-xs hidden-sm"><a href="#"><i
+                                                                    class="ti-thumb-up"></i>15 likes</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="news-list-item">
+                                                <div class="img-wrapper">
+                                                    <a href="#" class="thumb">
+                                                        <img src="http://inews.themepk.com/news/inews_v1.0/assets/images/115x85-1.jpg"
+                                                            alt="" class="img-responsive">
+                                                        <div class="link-icon">
+                                                            <i class="fa fa-camera"></i>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="post-info-2">
+                                                    <h5><a href="#" class="title">Cooking Recipes Anytime And
+                                                            Anywhere</a></h5>
+                                                    <ul class="authar-info">
+                                                        <li><i class="ti-timer"></i> May 15, 2016</li>
+                                                        <li class="like hidden-xs hidden-sm"><a href="#"><i
+                                                                    class="ti-thumb-up"></i>15 likes</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END OF /. POST CATEGORY STYLE ONE (Popular news) -->
+                <!-- START ADVERTISEMENT -->
+                <div class="add-inner">
+                    <img src="http://inews.themepk.com/news/inews_v1.0/assets/images/add728x90-1.jpg"
+                        class="img-responsive" alt="">
+                </div>
+                <!-- END OF /. ADVERTISEMENT -->
+                <!-- START POST CATEGORY STYLE TWO (Travel news) -->
+                <div class="post-inner post-inner-2">
+                    <!--post header-->
+                    <div class="post-head">
+                        <h2 class="title"><strong>Travel</strong> News</h2>
+                        <div class="filter-nav">
+                            <ul>
+                                <li><a href="#" class="active">all</a></li>
+                                <li><a href="#">business</a></li>
+                                <li><a href="#">gadgets</a></li>
+                                <li><a href="#">design</a></li>
+                                <li><a href="#">fashion</a></li>
+                                <li><a href="#">video</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- post body -->
+                    <div class="post-body">
+                        <div class="owl-carousel owl-theme post-slider-rtl">
+                            <!-- item one -->
+                            <div class="item">
+                                <div class="row">
+                                    <div class="col-sm-6 main-post-inner bord-right">
+                                        <article>
+                                            <figure>
+                                                <a href="#"><img
+                                                        src="http://inews.themepk.com/news/inews_v1.0/assets/images/340x215-3.jpg"
+                                                        height="242" width="345" alt="" class="img-responsive"></a>
+                                                <span class="post-category">Travel</span>
+                                            </figure>
+                                            <div class="post-info">
+                                                <h3><a href="#">Fusce ac orci sagittis mattis magna ultrices libero</a>
+                                                </h3>
+                                                <ul class="authar-info">
+                                                    <li><i class="ti-timer"></i> May 15, 2016</li>
+                                                    <li class="like"><a href="#"><i class="ti-thumb-up"></i>15 likes</a>
+                                                    </li>
+                                                </ul>
+                                                <p class="p">Sed ut perspiciatis unde omnis iste natus sit voluptatem
+                                                    accusantium doloremque laudantium, totamrem aperiam, eaque ipsa quae
+                                                    ab illo inventore</p>
+                                            </div>
+                                        </article>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="news-grid-2">
+                                            <div class="row row-margin">
+                                                <div class="col-xs-6 col-sm-6 col-md-6 col-padding">
+                                                    <div class="grid-item">
+                                                        <div class="grid-item-img">
+                                                            <a href="#">
+                                                                <img src="http://inews.themepk.com/news/inews_v1.0/assets/images/165x110-1.jpg"
+                                                                    class="img-responsive" alt="">
+                                                                <div class="link-icon"><i class="fa fa-play"></i></div>
+                                                            </a>
+                                                        </div>
+                                                        <h5><a href="#" class="title">Lorem Ipsum is simply dummy text
+                                                                of the printing.</a></h5>
+                                                        <ul class="authar-info">
+                                                            <li>May 15, 2016</li>
+                                                            <li class="like hidden-sm"><a href="#">15 likes</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6 col-md-6 col-padding">
+                                                    <div class="grid-item">
+                                                        <div class="grid-item-img">
+                                                            <a href="#">
+                                                                <img src="http://inews.themepk.com/news/inews_v1.0/assets/images/165x110-2.jpg"
+                                                                    class="img-responsive" alt="">
+                                                                <div class="link-icon"><i class="fa fa-camera"></i>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <h5><a href="#" class="title">It is a long established fact that
+                                                                a reader will be distracted by</a></h5>
+                                                        <ul class="authar-info">
+                                                            <li>May 15, 2016</li>
+                                                            <li class="like hidden-sm"><a href="#">15 likes</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6 col-md-6 col-padding">
+                                                    <div class="grid-item">
+                                                        <div class="grid-item-img">
+                                                            <a href="#">
+                                                                <img src="http://inews.themepk.com/news/inews_v1.0/assets/images/165x110-3.jpg"
+                                                                    class="img-responsive" alt="">
+                                                                <div class="link-icon"><i class="fa fa-camera"></i>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <h5><a href="#" class="title">There are many variations of
+                                                                passages of Lorem Ipsum.</a></h5>
+                                                        <ul class="authar-info">
+                                                            <li>May 15, 2016</li>
+                                                            <li class="like hidden-sm"><a href="#">15 likes</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6 col-md-6 col-padding">
+                                                    <div class="grid-item">
+                                                        <div class="grid-item-img">
+                                                            <a href="#">
+                                                                <img src="http://inews.themepk.com/news/inews_v1.0/assets/images/165x110-4.jpg"
+                                                                    class="img-responsive" alt="">
+                                                                <div class="link-icon"><i class="fa fa-play"></i></div>
+                                                            </a>
+                                                        </div>
+                                                        <h5><a href="#" class="title">Contrary to popular belief, Lorem
+                                                                Ipsum is not simply random text.</a></h5>
+                                                        <ul class="authar-info">
+                                                            <li>May 15, 2016</li>
+                                                            <li class="like hidden-sm"><a href="#">15 likes</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- item two -->
+                            <div class="item">
+                                <div class="row">
+                                    <div class="col-sm-6 main-post-inner bord-right">
+                                        <article>
+                                            <figure>
+                                                <a href="#"><img
+                                                        src="http://inews.themepk.com/news/inews_v1.0/assets/images/340x215-4.jpg"
+                                                        height="242" width="345" alt="" class="img-responsive"></a>
+                                                <span class="post-category">Travel</span>
+                                            </figure>
+                                            <div class="post-info">
+                                                <h3><a href="#">Fusce ac orci sagittis mattis magna ultrices libero</a>
+                                                </h3>
+                                                <ul class="authar-info">
+                                                    <li><i class="ti-timer"></i> May 15, 2016</li>
+                                                    <li class="like"><a href="#"><i class="ti-thumb-up"></i>15 likes</a>
+                                                    </li>
+                                                </ul>
+                                                <p class="p">Sed ut perspiciatis unde omnis iste natus sit voluptatem
+                                                    accusantium doloremque laudantium, totamrem aperiam, eaque ipsa quae
+                                                    ab illo inventore</p>
+                                            </div>
+                                        </article>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="news-grid-2">
+                                            <div class="row row-margin">
+                                                <div class="col-xs-6 col-sm-6 col-md-6 col-padding">
+                                                    <div class="grid-item">
+                                                        <div class="grid-item-img">
+                                                            <a href="#">
+                                                                <img src="http://inews.themepk.com/news/inews_v1.0/assets/images/165x110-5.jpg"
+                                                                    class="img-responsive" alt="">
+                                                                <div class="link-icon"><i class="fa fa-camera"></i>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <h5><a href="#" class="title">Lorem Ipsum is simply dummy text
+                                                                of the printing.</a></h5>
+                                                        <ul class="authar-info">
+                                                            <li>May 15, 2016</li>
+                                                            <li class="like hidden-sm"><a href="#">15 likes</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6 col-md-6 col-padding">
+                                                    <div class="grid-item">
+                                                        <div class="grid-item-img">
+                                                            <a href="#">
+                                                                <img src="http://inews.themepk.com/news/inews_v1.0/assets/images/165x110-6.jpg"
+                                                                    class="img-responsive" alt="">
+                                                                <div class="link-icon"><i class="fa fa-camera"></i>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <h5><a href="#" class="title">It is a long established fact that
+                                                                a reader will be distracted by</a></h5>
+                                                        <ul class="authar-info">
+                                                            <li>May 15, 2016</li>
+                                                            <li class="like hidden-sm"><a href="#">15 likes</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6 col-md-6 col-padding">
+                                                    <div class="grid-item">
+                                                        <div class="grid-item-img">
+                                                            <a href="#">
+                                                                <img src="http://inews.themepk.com/news/inews_v1.0/assets/images/165x110-7.jpg"
+                                                                    class="img-responsive" alt="">
+                                                                <div class="link-icon"><i class="fa fa-camera"></i>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <h5><a href="#" class="title">There are many variations of
+                                                                passages of Lorem Ipsum.</a></h5>
+                                                        <ul class="authar-info">
+                                                            <li>May 15, 2016</li>
+                                                            <li class="like hidden-sm"><a href="#">15 likes</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6 col-md-6 col-padding">
+                                                    <div class="grid-item">
+                                                        <div class="grid-item-img">
+                                                            <a href="#">
+                                                                <img src="http://inews.themepk.com/news/inews_v1.0/assets/images/165x110-8.jpg"
+                                                                    class="img-responsive" alt="">
+                                                                <div class="link-icon"><i class="fa fa-camera"></i>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <h5><a href="#" class="title">Contrary to popular belief, Lorem
+                                                                Ipsum is not simply random text.</a></h5>
+                                                        <ul class="authar-info">
+                                                            <li>May 15, 2016</li>
+                                                            <li class="like hidden-sm"><a href="#">15 likes</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--  END OF /. POST CATEGORY STYLE TWO (Travel news) -->
+            </div>
+        </div>
+
+        <!-- START SIDE CONTENT -->
+        {% include 'news/side_content.html' %}
+        <!-- END OF /. SIDE CONTENT -->
+    </div>
+</div>
+</main>
+
+
+{% endblock %}

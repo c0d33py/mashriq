@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block body %}
+<section class="section">
+
+    <div class="row">
+        <div class="col-md-4">
+            <a class="btn btn-primary btn-lg" href="{% url 'article-create' %}">
+                <span class="fa fa-edit" style="font-size:xx-large;margin:5px;"></span>
+                Create<br>
+                <small>Create news Article</small>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a class="btn btn-info btn-lg" href="{% url 'article-list' %}">
+                <span class="fa fa-list" style="font-size:xx-large;margin:5px;"></span>
+                Show Article<br>
+                <small>Show Article database</small>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a class="btn btn-warning btn-lg" href="#">
+                <span class="glyphicon glyphicon-shopping-cart pull-left" style="font-size:xx-large;margin:5px;"></span>
+                Buy Now<br>
+                <small>Instant and secure</small>
+            </a>
+        </div>
+    </div>
+    <div class="col-md-12" style="margin-top: 10px; color: dark;">
+        <div class="card">
+            <div class="card-block ">
+                <table id="example" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Tilte</th>
+                            <th>status</th>
+                            <th>Date time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for article in articles %}
+                        <tr>
+                            <td><a href="{% url 'article-detail' pk=article.pk %}"
+                                    style="color: #4f5f6f;">{{ article.title }}</a>
+                            </td>
+                            <td style="font-size: 14px;">{{ article.status }}</td>
+                            <td style="font-size: 14px;">{{ article.timestamp | timesince }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Tilte</th>
+                            <th>status</th>
+                            <th>Date time</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

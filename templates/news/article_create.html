@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block body %}
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+<script>
+    var loadFile = function (event) {
+        var image = document.getElementById('output');
+        image.src = URL.createObjectURL(event.target.files[0]);
+    };
+</script>
+<div class="col-12">
+    <div class="row">
+
+        <form action="." method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="col-md-8">
+                <div class="form-group row">
+                    {% render_field form.title type="text" class="form-control boxed" placeholder="title place" %}
+                </div>
+                <div class="form-group row">
+                    {% render_field form.content type="text" %}
+                </div>
+                <div class="form-group row">
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                </div>
+            </div>
+
+            <div class="col-xl-4" style="padding-left: 100px;">
+                <div class="card card-primary ">
+                    <div class="card-header">
+                        <div class="header-block">
+                            <p class="title">Categories</p>
+                        </div>
+                    </div>
+                    <div class="card-block">
+                        <div class="form-group">
+                            {% for cat in form.categories %}
+                            <div class="cat">
+                                <label for="{{ cat.id_for_label }}">
+                                    {{ cat }}
+                                </label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="card card-success ">
+                    <div class="card-header">
+                        <div class="header-block">
+                            <p class="title">Image Upload</p>
+                        </div>
+                    </div>
+                    <div class="card-block">
+                        <div class="form-group">
+                            <div class="images-container">
+                                <div class="image-container new">
+                                    {% render_field form.thumbnail  accept="image/*" id="file"  onchange="loadFile(event)" %}
+                                </div>
+                            </div><br>
+                            <p><img id="output" width="200" /></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
