@@ -28,11 +28,7 @@
                                     {% endfor %}
                                     <h2><a href="">{{ carousel.title }}</a>
                                     </h2>
-                                    <ul class="authar-info">
-                                        <li class="authar"><a href="#">by david hall</a></li>
-                                        <li class="date">May 29,2016</li>
-                                        <li class="view"><a href="#">25 views</a></li>
-                                    </ul>
+                                    <li class="date">{{ carousel.timestamp | timesince }}</li>
                                 </div>
                             </div>
                         </div>
@@ -45,15 +41,14 @@
                     {% for slider in sliders %}
                     <div class="col-xs-6 col-sm-6 col-md-6 thm-padding">
                         <div class="slider-post post-height-2">
-                            <a href="#" class="news-image"><img src="{{ slider.thumbnail.url }}" alt=""
-                                    class="img-responsive"></a>
+                            <a href="{% url 'news-detail' pk=slider.pk %}" class="news-image"><img
+                                    src="{{ slider.thumbnail.url }}" alt="" class="img-responsive"></a>
                             <div class="post-text">
-                                <span class="post-category">{{ slider.categories }}</span>
+                                {% for cat in slider.categories.all %}
+                                <span class="post-category">{{ cat }}</span>
+                                {% endfor %}
                                 <h4><a href="#">{{ slider.title }}</a></h4>
-                                <ul class="authar-info">
-                                    <li class="authar hidden-xs hidden-sm"><a href="#">by david hall</a></li>
-                                    <li class="hidden-xs">May 29,2017</li>
-                                </ul>
+                                <li class="hidden-xs">{{ slider.timestamp | timesince }}</li>
                             </div>
                         </div>
                     </div>
@@ -74,7 +69,7 @@
                 <div class="post-inner">
                     <!--post header-->
                     <div class="post-head">
-                        <h2 class="title" style="font-family: nafeesnastaleeqregular1;">قومی خبریں</h2>
+                        <h2 class="title" style="font-family: nafeesnastaleeqregular1;"> قومی خبریں</h2>
                     </div>
                     <!-- post body -->
                     <div class="post-body">
@@ -315,7 +310,7 @@
                 <div class="post-inner post-inner-2">
                     <!--post header-->
                     <div class="post-head">
-                        <h2 class="title"><strong>Travel</strong> News</h2>
+                        <h2 class="title"><strong>انٹرٹینمنٹ</strong></h2>
                         <div class="filter-nav">
                             <ul>
                                 <li><a href="#" class="active">all</a></li>

@@ -16,13 +16,18 @@ from django.views.generic import (
 
 
 def index(request):
+    cats = Category.objects.filter().order_by()[:1]
     carousels = Article.objects.filter().order_by('-timestamp')[:5]
     sliders = Article.objects.filter(
-        categories__isnull='1').order_by('-timestamp',)[:4]
+        categories__exact='7').order_by('-timestamp',)[:4]
+    singlecats = Article.objects.filter(
+        categories__exact='8').order_by('-timestamp',)[:2]
 
     context = {
+        'cats': cats,
         'carousels': carousels,
         'sliders': sliders,
+        'singlecats': singlecats,
     }
     return render(request, 'news/index.html', context)
 
