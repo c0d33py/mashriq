@@ -16,18 +16,21 @@ from django.views.generic import (
 
 
 def index(request):
-    cats = Category.objects.filter().order_by()[:1]
-    carousels = Article.objects.filter().order_by('-timestamp')[:5]
+    carousels = Article.objects.filter(
+        categories__exact='7').order_by('-timestamp')[:5]
     sliders = Article.objects.filter(
-        categories__exact='7').order_by('-timestamp',)[:4]
-    singlecats = Article.objects.filter(
-        categories__exact='8').order_by('-timestamp',)[:2]
+        categories__exact='9').order_by('-timestamp',)[:4]
+    # national news
+    national = Article.objects.filter(
+        categories__exact='9').order_by('-timestamp',)[:2]
+    nationalcat = Article.objects.filter(
+        categories__exact='9').order_by('-timestamp',)
 
     context = {
-        'cats': cats,
         'carousels': carousels,
         'sliders': sliders,
-        'singlecats': singlecats,
+        'national': national,
+        'nationalcat': nationalcat,
     }
     return render(request, 'news/index.html', context)
 
