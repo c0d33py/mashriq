@@ -82,7 +82,7 @@ CKEDITOR_UPLOAD_PATH = 'article/'
 CKEDITOR_IMAGE_BACKEND = "pillow"
 CKEDITOR_CONFIGS = {
     'default': {
-        'width': 700,
+        'width': 'auto',
     },
 }
 

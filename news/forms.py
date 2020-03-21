@@ -7,7 +7,8 @@ from . models import Category
 class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article
-        fields = ['title', 'categories', 'thumbnail', 'content']
+        fields = ['title', 'categories', 'thumbnail',
+                  'content', 'featured', 'status']
         widgets = {
             'categories': CheckboxSelectMultiple(),
         }

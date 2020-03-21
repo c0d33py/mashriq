@@ -16,36 +16,121 @@ from django.views.generic import (
 
 
 def index(request):
-    carousels = Article.objects.filter(
-        categories__exact='7').order_by('-timestamp')[:5]
-    sliders = Article.objects.filter(
-        categories__exact='9').order_by('-timestamp',)[:4]
+    carousels = Article.objects.filter(status=True,
+                                       categories__exact='7'
+                                       ).order_by('-timestamp')[:5]
+    sliders = Article.objects.filter(status=True,
+                                     categories__exact='9'
+                                     ).order_by('-timestamp',)[:4]
     # national news
-    national = Article.objects.filter(
-        categories__exact='9').order_by('-timestamp',)[:2]
-    nationalcat = Article.objects.filter(
-        categories__exact='9').order_by('-timestamp',)
+    national = Article.objects.filter(status=True, featured=True,
+                                      categories__exact='9'
+                                      ).order_by('-timestamp',)[:2]
+    nationalcat = Article.objects.filter(status=True,
+                                         categories__exact='9'
+                                         ).order_by('-timestamp',
+                                                    ).exclude(featured=True)
 
     context = {
         'carousels': carousels,
         'sliders': sliders,
         'national': national,
         'nationalcat': nationalcat,
+        'title': 'Home'
     }
     return render(request, 'news/index.html', context)
 
 
-def NewsDetail(request, pk):
-    obj = get_object_or_404(Article, pk=pk)
+# latest post Detail views
+def Latest(request):
+    obj = Article.objects.all().order_by('-timestamp',)
+
     context = {
-        'obj': obj
+        'object': obj,
+        'title': 'تازہ ترین'
     }
-    return render(request, 'news/detail.html', context)
+    return render(request, 'news/latest.html', context)
+
+
+# pakistan detail views
+def pakistan(request):
+    obj = Article.objects.filter(
+        categories__exact='7').order_by('-timestamp',)
+
+    context = {
+        'object': obj,
+        'title': 'پاکستان'
+    }
+    return render(request, 'news/pakistan.html', context)
+
+
+# international detail viwes
+def international(request):
+    obj = Article.objects.filter(
+        categories__exact='7').order_by('-timestamp',)
+
+    context = {
+        'object': obj,
+        'title': 'بین الاقوامی خبریں'
+    }
+    return render(request, 'news/international.html', context)
+
+
+# programes detail views
+def programes(request):
+    obj = Article.objects.filter(
+        categories__exact='7').order_by('-timestamp',)
+
+    context = {
+        'object': obj,
+        'title': ' پروگرامز'
+    }
+    return render(request, 'news/programes.html', context)
+
+
+# showbiz detail views
+def showbiz(request):
+    obj = Article.objects.filter(
+        categories__exact='7').order_by('-timestamp',)
+
+    context = {
+        'object': obj,
+        'title': ' شوبز'
+    }
+    return render(request, 'news/showbiz.html', context)
+
+
+# '''sports detial views'''
+def sports(request):
+    obj = Article.objects.filter(
+        categories__exact='7').order_by('-timestamp',)
+
+    context = {
+        'object': obj,
+        'title': ' سپورٹس'
+    }
+    return render(request, 'news/sports.html', context)
 
 
 # live streeming views website
 def Live(request):
-    return render(request, 'news/live.html')
+    obj = Article.objects.filter(
+        categories__exact='7').order_by('-timestamp',)
+
+    context = {
+        'object': obj,
+        'title': 'live'
+    }
+    return render(request, 'news/live.html', context)
+
+
+# live News Detail views website
+def NewsDetail(request, pk):
+    obj = get_object_or_404(Article, pk=pk)
+    context = {
+        'object': obj
+    }
+    return render(request, 'news/detail.html', context)
 
 
 # admin side views
@@ -59,6 +144,7 @@ class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     success_message = "%(title)s was created successfully"
 
     def form_valid(self, form):
+        form.instance.author = self.request.user
         print(form.cleaned_data)
         return super().form_valid(form)
 
@@ -98,6 +184,7 @@ class ArticleUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         return get_object_or_404(Article, pk=pk_)
 
     def form_valid(self, form):
+        form.instance.author = self.request.user
         print(form.cleaned_data)
         return super().form_valid(form)
 

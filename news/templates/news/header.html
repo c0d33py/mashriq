@@ -10,29 +10,15 @@
                         <ul>
                             <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                             <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-vk"></i></a></li>
-                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                             <li class="hidden-xs"><a href="#"><i class="fa fa-youtube-play"></i></a></li>
-                            <li class="hidden-xs"><a href="#"><i class="fa fa-vimeo"></i></a></li>
                         </ul>
                     </div>
-                    <!-- End of /. header social -->
-                    <!-- Start top left menu -->
-                    <div class="top-left-menu">
-                        <ul>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Donation</a></li>
-                        </ul>
-                    </div>
-                    <!-- End of /. top left menu -->
                 </div>
                 <!-- Start header top right menu -->
                 <div class="hidden-xs col-md-6 col-sm-6 col-lg-6">
                     <div class="header-right-menu">
                         <ul>
-                            <li>Currency: <a href="#">USD</a></li>
-                            <li>Wishlist: <a href="#">12</a></li>
-                            <li> <a href="#"><i class="fa fa-lock"></i> Sign Up </a>or<a href="#"> Login</a></li>
+                            <li> <a href="#">mashriq@gmail.com</a>
                         </ul>
                     </div>
                 </div> <!-- end of /. header top right menu -->
@@ -93,12 +79,17 @@
             <div class="collapse navbar-collapse" id="navbar-menu">
                 <ul class="nav navbar-nav navbar-left" data-in="" data-out="">
                     <li class="active">
-                        <li class="active"><a href="/" >صفحہ اوّل</a></li>
+                    <li class="active"><a href="/">صفحہ اوّل</a></li>
                     </li>
-                    <li><a href="about.html">پاکستان</a></li>
-                    <li><a href="contact.html" >بین الاقوامی</a></li>
-                    <li><a href="faq.html">بین الاقوامی خبریں</a></li>
-                    <li><a href="/live" >Live</a></li>
+                    <li><a href="{% url 'news-latest' %}">تازہ ترین</a></li>
+                    <li><a href="{% url 'news-pakistan' %}">پاکستان</a></li>
+                    <li><a href="{% url 'news-international' %}">بین الاقوامی خبریں</a></li>
+                    <li><a href="{% url 'news-programes' %}"> پروگرامز</a></li>
+                    <li><a href="{% url 'news-showbiz' %}"> شوبز</a></li>
+                    <li><a href="{% url 'news-sports' %}"> سپورٹس</a></li>
+                    <li style="background-color: rgb(238, 0, 91)"><a style="color: white;"
+                            href="{% url 'news-streem' %}">لائیوٹی وی </a>
+                    </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div>

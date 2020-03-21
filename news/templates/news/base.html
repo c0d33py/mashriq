@@ -4,18 +4,11 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>news</title>
-
-<!-- <link rel="shortcut icon" href="http://inews.themepk.com/news/inews_v1.0/assets/images/ico/favicon.png"
-    type="image/x-icon"> -->
-<link rel="apple-touch-icon" type="image/x-icon"
-    href="http://inews.themepk.com/news/inews_v1.0/assets/images/ico/apple-touch-icon-57-precomposed.png">
-<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72"
-    href="http://inews.themepk.com/news/inews_v1.0/assets/images/ico/apple-touch-icon-72-precomposed.png">
-<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114"
-    href="http://inews.themepk.com/news/inews_v1.0/assets/images/ico/apple-touch-icon-114-precomposed.png">
-<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144"
-    href="http://inews.themepk.com/news/inews_v1.0/assets/images/ico/apple-touch-icon-144-precomposed.png">
+{% if title %}
+<title>{{ title }}</title>
+{% else %}
+<title>Mashriq</title>
+{% endif %}
 
 <link href="{% static '/rtl/assets/css/jquery-ui.min.css' %}" rel="stylesheet" type="text/css" />
 <link href="{% static '/rtl/assets/css/bootstrap.rtl.full.min.css' %}" rel="stylesheet" type="text/css" />
@@ -26,8 +19,6 @@
 <!-- font awesome -->
 <link href="{% static '/rtl/assets/css/font-awesome/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
 <link href="{% static '/rtl/assets/css/themify-icons/themify-icons.css' %}" rel="stylesheet" type="text/css" />
-<link href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css" rel="stylesheet"
-    type="text/css" />
 <link href="{% static '/rtl/assets/css/flaticon.css' %}" rel="stylesheet" type="text/css" />
 <link href="{% static '/rtl/assets/css/OwlCarousel2-2.2.1/owl.carousel.min.css' %}" rel="stylesheet" type="text/css" />
 <link href="{% static '/rtl/assets/css/OwlCarousel2-2.2.1/owl.theme.default.min.css' %}" rel="stylesheet"

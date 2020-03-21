@@ -1,0 +1,84 @@
+{% extends 'news/base.html' %}
+{% block body %}
+<div class="newstricker_inner">
+    <div class="trending"><strong> اہم خبریں
+    </strong></div>
+    <div id="NewsTicker-rtl" class="owl-carousel owl-theme">
+        <div class="item">
+            <a href="#">حادثے میں شوہر کے جسم کا 90 فیصد جب کہ بیوی کے جسم کا 10 فیصد حصہ متاثر ہوا،32 سالہ شخص کی حالت
+                تشویشناک</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row row-m">
+        <!-- START MAIN CONTENT -->
+        <div class="col-sm-8 col-p  main-content">
+            <div class="theiaStickySidebar">
+                <div class="post-inner categoty-style-1">
+                    <div class="post-head">
+                        {% if title %}
+                        <h2 class="title"> {{ title }} </h2>
+                        {% else %}
+                        <h2 class="title"> پاکستان </h2>
+                        {% endif %}
+                    </div>
+                    <!-- post body -->
+                    <div class="post-body">
+                        <div class="row row-m">
+                            {% for obj in object %}
+                            <div class="col-sm-6 col-p">
+                                <article>
+                                    <figure>
+                                        <a href="{% url 'news-detail' pk=obj.pk %}"><img src="{{ obj.thumbnail.url }}"
+                                                height="242" width="345" alt="" class="img-responsive"></a>
+                                    </figure>
+                                    <div class="post-info">
+                                        <h3><a href="#">{{ obj.title }}</a>
+                                        </h3>
+                                        <span>
+                                            <i class="ti-timer"></i>
+                                            {{ obj.timestamp | timesince }}
+                                        </span>
+                                        <p></p>
+                                    </div>
+                                </article>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- Post footer -->
+                    <div class="post-footer">
+                        <div class="row thm-margin">
+                            <div class="col-xs-12 col-sm-12 col-md-12 thm-padding">
+                                <!-- pagination -->
+                                <!-- <ul class="pagination">
+                                        <li class="disabled"><span class="ti-angle-left"></span></li>
+                                        <li class="active"><span>1</span></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li class="disabled"><span class="extend">...</span></li>
+                                        <li>
+                                        <li><a href="#">12</a></li>
+                                        <li><a href="#"><i class="ti-angle-right"></i></a></li>
+                                    </ul>  -->
+                                <!-- /.pagination -->
+                            </div>
+                        </div>
+                    </div> <!-- /.Post footer-->
+                </div>
+            </div>
+        </div>
+        <!-- END OF /. MAIN CONTENT -->
+        {% include 'news/side_content.html' %}
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}

@@ -11,6 +11,12 @@ from .views import (ArticleListView,
 urlpatterns = [
     # client side interface
     path('', views.index, name='news-home'),
+    path('latest/', views.Latest, name='news-latest'),
+    path('pakistan/', views.pakistan, name='news-pakistan'),
+    path('international/', views.international, name='news-international'),
+    path('programes/', views.programes, name='news-programes'),
+    path('showbiz/', views.showbiz, name='news-showbiz'),
+    path('sports/', views.sports, name='news-sports'),
     path('news/<int:pk>/detail/', views.NewsDetail, name='news-detail'),
     path('news/live/', views.Live, name='news-streem'),
 

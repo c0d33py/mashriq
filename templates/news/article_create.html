@@ -23,6 +23,18 @@
                     {% render_field form.content type="text" %}
                 </div>
                 <div class="form-group row">
+                    <label>
+                        {% render_field form.status class="radio" %}
+                        <span>Status</span>
+                    </label>
+                    <label>
+                        {% render_field form.featured class="radio" %}
+                        <span>Featured</span>
+                    </label>
+                </div>
+                <div class="form-group row">
+                </div>
+                <div class="form-group row">
                     <button type="submit" class="btn btn-primary btn-block">Submit</button>
                 </div>
             </div>
@@ -37,7 +49,7 @@
                     <div class="card-block">
                         <div class="form-group">
                             {% for cat in form.categories %}
-                            <div class="cat">
+                            <div>
                                 <label for="{{ cat.id_for_label }}">
                                     {{ cat }}
                                 </label>
