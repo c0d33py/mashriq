@@ -30,12 +30,19 @@ def index(request):
                                          categories__exact='9'
                                          ).order_by('-timestamp',
                                                     ).exclude(featured=True)
+    latest = Article.objects.all().order_by('-timestamp',)
+
+    showbizs = Article.objects.filter(status=True,
+                                      categories__exact='7'
+                                      ).order_by('-timestamp',)[:5]
 
     context = {
         'carousels': carousels,
         'sliders': sliders,
         'national': national,
         'nationalcat': nationalcat,
+        'latest': latest,
+        'showbizs': showbizs,
         'title': 'Home'
     }
     return render(request, 'news/index.html', context)

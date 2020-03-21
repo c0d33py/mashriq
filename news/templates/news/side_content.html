@@ -24,68 +24,22 @@
             </div>
             <div class="panel_body">
                 <div class="news-list">
-                    <div class="news-list-item">
-                        <div class="img-wrapper">
-                            <a href="#" class="thumb">
-                                <img src="http://inews.themepk.com/news/inews_v1.0/assets/images/115x85-5.jpg" alt=""
-                                    class="img-responsive">
-                                <div class="link-icon">
-                                    <i class="fa fa-camera"></i>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="post-info-2">
-                            <h5><a href="#" class="title">It is a long established fact that a reader. </a></h5>
-                            <div class="reviews-reatting">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-o"></i>
-                                <i class="fa fa-star-o"></i>
+                    <div class="news-list">
+                        {% for show in latest %}
+                        <div class="news-list-item">
+                            <div class="img-wrapper">
+                                <a href="#" class="thumb">
+                                    <img src="{{ show.thumbnail.url }}" alt="" class="img-responsive">
+                                    <div class="link-icon">
+                                        <i class="fa fa-camera"></i>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="post-info-2">
+                                <h5><a href="#" class="title">{{ show.title }} </a></h5>
                             </div>
                         </div>
-                    </div>
-                    <div class="news-list-item">
-                        <div class="img-wrapper">
-                            <a href="#" class="thumb">
-                                <img src="http://inews.themepk.com/news/inews_v1.0/assets/images/115x85-6.jpg" alt=""
-                                    class="img-responsive">
-                                <div class="link-icon">
-                                    <i class="fa fa-play"></i>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="post-info-2">
-                            <h5><a href="#" class="title">There are many variations of passages,</a></h5>
-                            <div class="reviews-reatting">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-o"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="news-list-item">
-                        <div class="img-wrapper">
-                            <a href="#" class="thumb">
-                                <img src="http://inews.themepk.com/news/inews_v1.0/assets/images/115x85-7.jpg" alt=""
-                                    class="img-responsive">
-                                <div class="link-icon">
-                                    <i class="fa fa-camera"></i>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="post-info-2">
-                            <h5><a href="#" class="title">Lorem Ipsum is simply dummy text of the.</a></h5>
-                            <div class="reviews-reatting">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-o"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -94,73 +48,25 @@
         <!-- START LATEST REVIEWS -->
         <div class="panel_inner review-inner">
             <div class="panel_header">
-                <h4><strong> سپورٹس</strong></h4>
+                <h4><strong> شوبز</strong></h4>
             </div>
             <div class="panel_body">
                 <div class="news-list">
+                    {% for show in showbizs %}
                     <div class="news-list-item">
                         <div class="img-wrapper">
                             <a href="#" class="thumb">
-                                <img src="http://inews.themepk.com/news/inews_v1.0/assets/images/115x85-5.jpg" alt=""
-                                    class="img-responsive">
+                                <img src="{{ show.thumbnail.url }}" alt="" class="img-responsive">
                                 <div class="link-icon">
                                     <i class="fa fa-camera"></i>
                                 </div>
                             </a>
                         </div>
                         <div class="post-info-2">
-                            <h5><a href="#" class="title">It is a long established fact that a reader. </a></h5>
-                            <div class="reviews-reatting">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-o"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
+                            <h5><a href="#" class="title">{{ show.title }} </a></h5>
                         </div>
                     </div>
-                    <div class="news-list-item">
-                        <div class="img-wrapper">
-                            <a href="#" class="thumb">
-                                <img src="http://inews.themepk.com/news/inews_v1.0/assets/images/115x85-6.jpg" alt=""
-                                    class="img-responsive">
-                                <div class="link-icon">
-                                    <i class="fa fa-play"></i>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="post-info-2">
-                            <h5><a href="#" class="title">There are many variations of passages,</a></h5>
-                            <div class="reviews-reatting">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-o"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="news-list-item">
-                        <div class="img-wrapper">
-                            <a href="#" class="thumb">
-                                <img src="http://inews.themepk.com/news/inews_v1.0/assets/images/115x85-7.jpg" alt=""
-                                    class="img-responsive">
-                                <div class="link-icon">
-                                    <i class="fa fa-camera"></i>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="post-info-2">
-                            <h5><a href="#" class="title">Lorem Ipsum is simply dummy text of the.</a></h5>
-                            <div class="reviews-reatting">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-o"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
