@@ -1,4 +1,9 @@
+from django.contrib.sitemaps.views import sitemap
+from django.contrib.sitemaps import GenericSitemap
+from .models import Article
 from django.urls import path
+from .sitemaps import StaticViewSitemap, NewsSitemap
+# from .feeds import LatestArticleFeed
 from . import views
 from .views import (ArticleListView,
                     ArticleCreateView,
@@ -7,6 +12,10 @@ from .views import (ArticleListView,
                     ArticleDeleteView
                     )
 
+sitemaps = {
+    'static': StaticViewSitemap,
+    'news': NewsSitemap,
+}
 
 urlpatterns = [
     # client side interface
@@ -14,11 +23,16 @@ urlpatterns = [
     path('latest/', views.Latest, name='news-latest'),
     path('pakistan/', views.pakistan, name='news-pakistan'),
     path('international/', views.international, name='news-international'),
-    path('programes/', views.programes, name='news-programes'),
+    path('business/', views.business, name='news-business'),
     path('showbiz/', views.showbiz, name='news-showbiz'),
     path('sports/', views.sports, name='news-sports'),
     path('news/<int:pk>/detail/', views.NewsDetail, name='news-detail'),
     path('news/live/', views.Live, name='news-streem'),
+    # sitemap
+    path('sitemap.xml/', sitemap, {'sitemaps': sitemaps},
+         name='django.contrib.sitemaps.views.sitemap'),
+    # feeds
+    #     path('feed/rss', LatestArticleFeed()),
 
 
     # this urls for user interface

@@ -25,6 +25,9 @@
                                 <div class="post-text">
                                     <h2><a href="">{{ carousel.title }}</a>
                                     </h2>
+                                    {% for cat in carousel.categories.all %}
+                                    <span class="post-category">{{ cat.name }}</span>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
@@ -41,6 +44,9 @@
                                     src="{{ slider.thumbnail.url }}" alt="" class="img-responsive"></a>
                             <div class="post-text">
                                 <h4><a href="#">{{ slider.title }}</a></h4>
+                                {% for cat in slider.categories.all %}
+                                <span class="post-category">{{ cat.name }}</span>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -73,8 +79,9 @@
                                         {% for nat in national %}
                                         <article>
                                             <figure>
-                                                <a href="#"><img src="{{ nat.thumbnail.url }}" height="242" width="345"
-                                                        alt="" class="img-responsive"></a>
+                                                <a href="{% url 'news-detail' pk=nat.pk %}"><img
+                                                        src="{{ nat.thumbnail.url }}" height="242" width="345" alt=""
+                                                        class="img-responsive"></a>
                                             </figure>
                                             <div class="post-info">
                                                 <h3><a href="#">{{ nat.title }}</a>
@@ -90,10 +97,10 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="news-list">
-                                            {% for nat in nationalcat %}
+                                            {% for nat in nationallist %}
                                             <div class="news-list-item">
                                                 <div class="img-wrapper">
-                                                    <a href="#" class="thumb">
+                                                    <a href="{% url 'news-detail' pk=nat.pk %}" class="thumb">
                                                         <img src="{{ nat.thumbnail.url }}" alt=""
                                                             class="img-responsive">
                                                         <div class="link-icon">
@@ -102,7 +109,8 @@
                                                     </a>
                                                 </div>
                                                 <div class="post-info-2">
-                                                    <h5><a href="#" class="title">{{ nat.title }}</a></h5>
+                                                    <h5><a href="{% url 'news-detail' pk=nat.pk %}"
+                                                            class="title">{{ nat.title }}</a></h5>
                                                     <i class="ti-timer"></i> {{ nat.timestamp | timesince }}
                                                 </div>
                                             </div>
@@ -132,16 +140,17 @@
                             <div class="item">
                                 <div class="row">
                                     <div class="col-sm-6 main-post-inner bord-right">
-                                        {% for nat in national %}
+                                        {% for world in worlds %}
                                         <article>
                                             <figure>
-                                                <a href="#"><img src="{{ nat.thumbnail.url }}" height="242" width="345"
-                                                        alt="" class="img-responsive"></a>
+                                                <a href="{% url 'news-detail' pk=world.pk %}"><img
+                                                        src="{{ world.thumbnail.url }}" height="242" width="345" alt=""
+                                                        class="img-responsive"></a>
                                             </figure>
                                             <div class="post-info">
-                                                <h3><a href="#">{{ nat.title }}</a>
+                                                <h3><a href="#">{{ world.title }}</a>
                                                 </h3>
-                                                <i class="ti-timer"></i> {{ nat.timestamp | timesince }}
+                                                <i class="ti-timer"></i> {{ world.timestamp | timesince }}
                                                 <p></p>
                                             </div>
                                         </article>
@@ -149,20 +158,20 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="news-list">
-                                            {% for nat in nationalcat %}
+                                            {% for wo in worldlists %}
                                             <div class="news-list-item">
                                                 <div class="img-wrapper">
-                                                    <a href="#" class="thumb">
-                                                        <img src="{{ nat.thumbnail.url }}" alt=""
-                                                            class="img-responsive">
+                                                    <a href="{% url 'news-detail' pk=wo.pk %}" class="thumb">
+                                                        <img src="{{ wo.thumbnail.url }}" alt="" class="img-responsive">
                                                         <div class="link-icon">
                                                             <i class="fa fa-camera"></i>
                                                         </div>
                                                     </a>
                                                 </div>
                                                 <div class="post-info-2">
-                                                    <h5><a href="#" class="title">{{ nat.title }}</a></h5>
-                                                    <i class="ti-timer"></i> {{ nat.timestamp | timesince }}
+                                                    <h5><a href="{% url 'news-detail' pk=wo.pk %}"
+                                                            class="title">{{ wo.title }}</a></h5>
+                                                    <i class="ti-timer"></i> {{ wo.timestamp | timesince }}
                                                 </div>
                                             </div>
                                             {% endfor %}
@@ -182,7 +191,7 @@
                 <div class="post-inner">
                     <!-- post header -->
                     <div class="post-head">
-                        <h2 class="title">پروگرامز</h2>
+                        <h2 class="title">کاروبار</h2>
                     </div>
                     <!-- post body -->
                     <div class="post-body">
@@ -190,169 +199,24 @@
                             <!-- item one -->
                             <div class="item">
                                 <div class="row">
+                                    {% for buis in business%}
                                     <div class="col-sm-6 main-post-inner bord-right">
                                         <div class="more-post">
-                                            <a href="#" class="news-image"><img
-                                                    src="http://inews.themepk.com/news/inews_v1.0/assets/images/620x370-1.jpg"
-                                                    alt="" class="img-responsive"></a>
-                                            <div class="progressber" data-percent="80"></div>
+                                            <a href="#" class="news-image"><img src="{{ buis.thumbnail.url }}" alt=""
+                                                    class="img-responsive"></a>
                                             <div class="post-text">
-                                                <span class="post-category">Holliday Recipes </span>
-                                                <h4><a href="#">Lorem Ipsum is simply dummy text of the printing</a>
+                                                <h4><a href="#">{{ buis.title }}</a>
                                                 </h4>
+                                                {% for cat in buis.categories.all %}
+                                                <span class="post-category">{{ cat.name }}</span>
+                                                {% endfor %}
                                                 <ul class="authar-info">
-                                                    <li><i class="ti-timer"></i> May 15, 2016</li>
-                                                    <li class="like"><a href="#"><i class="ti-thumb-up"></i>15
-                                                            likes</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="more-post">
-                                            <a href="#" class="news-image"><img
-                                                    src="http://inews.themepk.com/news/inews_v1.0/assets/images/620x370-2.jpg"
-                                                    alt="" class="img-responsive"></a>
-                                            <div class="reatting">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                            </div>
-                                            <div class="post-text">
-                                                <span class="post-category">Business</span>
-                                                <h4><a href="#">Lorem Ipsum is simply dummy text of the printing</a>
-                                                </h4>
-                                                <ul class="authar-info">
-                                                    <li><i class="ti-timer"></i> May 15, 2016</li>
-                                                    <li class="like"><a href="#"><i class="ti-thumb-up"></i>15
-                                                            likes</a></li>
+                                                    <li><i class="ti-timer"></i>{{ buis.timestamp | timesince }}</li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <div class="more-post">
-                                            <a href="#" class="news-image"><img
-                                                    src="http://inews.themepk.com/news/inews_v1.0/assets/images/620x370-3.jpg"
-                                                    alt="" class="img-responsive"></a>
-                                            <div class="reatting">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                            </div>
-                                            <div class="post-text">
-                                                <span class="post-category">Business</span>
-                                                <h4>Lorem Ipsum is simply dummy text of the printing </h4>
-                                                <ul class="authar-info">
-                                                    <li><i class="ti-timer"></i> May 15, 2016</li>
-                                                    <li class="like"><a href="#"><i class="ti-thumb-up"></i>15
-                                                            likes</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="more-post">
-                                            <a href="#" class="news-image"><img
-                                                    src="http://inews.themepk.com/news/inews_v1.0/assets/images/620x370-4.jpg"
-                                                    alt="" class="img-responsive"></a>
-                                            <div class="progressber" data-percent="60"></div>
-                                            <div class="post-text">
-                                                <span class="post-category">Business</span>
-                                                <h4><a href="#">Lorem Ipsum is simply dummy text of the printing</a>
-                                                </h4>
-                                                <ul class="authar-info">
-                                                    <li><i class="ti-timer"></i> May 15, 2016</li>
-                                                    <li class="like"><a href="#"><i class="ti-thumb-up"></i>15
-                                                            likes</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- item two -->
-                            <div class="item">
-                                <div class="row">
-                                    <div class="col-sm-6 main-post-inner bord-right">
-                                        <div class="more-post">
-                                            <a href="#" class="news-image"><img
-                                                    src="http://inews.themepk.com/news/inews_v1.0/assets/images/620x370-5.jpg"
-                                                    alt="" class="img-responsive"></a>
-                                            <div class="progressber" data-percent="80"></div>
-                                            <div class="post-text">
-                                                <span class="post-category">Business</span>
-                                                <h4><a href="#">Lorem Ipsum is simply dummy text of the printing</a>
-                                                </h4>
-                                                <ul class="authar-info">
-                                                    <li><i class="ti-timer"></i> May 15, 2016</li>
-                                                    <li class="like"><a href="#"><i class="ti-thumb-up"></i>15
-                                                            likes</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="more-post">
-                                            <a href="#" class="news-image"><img
-                                                    src="http://inews.themepk.com/news/inews_v1.0/assets/images/620x370-6.jpg"
-                                                    alt="" class="img-responsive"></a>
-                                            <div class="reatting">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                            </div>
-                                            <div class="post-text">
-                                                <span class="post-category">Business</span>
-                                                <h4><a href="#">Lorem Ipsum is simply dummy text of the printing</a>
-                                                </h4>
-                                                <ul class="authar-info">
-                                                    <li><i class="ti-timer"></i> May 15, 2016</li>
-                                                    <li class="like"><a href="#"><i class="ti-thumb-up"></i>15
-                                                            likes</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="more-post">
-                                            <a href="#" class="news-image"><img
-                                                    src="http://inews.themepk.com/news/inews_v1.0/assets/images/620x370-7.jpg"
-                                                    alt="" class="img-responsive"></a>
-                                            <div class="reatting">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                            </div>
-                                            <div class="post-text">
-                                                <span class="post-category">Business</span>
-                                                <h4>Lorem Ipsum is simply dummy text of the printing </h4>
-                                                <ul class="authar-info">
-                                                    <li><i class="ti-timer"></i> May 15, 2016</li>
-                                                    <li class="like"><a href="#"><i class="ti-thumb-up"></i>15
-                                                            likes</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="more-post">
-                                            <a href="#" class="news-image"><img
-                                                    src="http://inews.themepk.com/news/inews_v1.0/assets/images/620x370-8.jpg"
-                                                    alt="" class="img-responsive"></a>
-                                            <div class="progressber" data-percent="60"></div>
-                                            <div class="post-text">
-                                                <span class="post-category">Business</span>
-                                                <h4><a href="#">Lorem Ipsum is simply dummy text of the printing</a>
-                                                </h4>
-                                                <ul class="authar-info">
-                                                    <li><i class="ti-timer"></i> May 15, 2016</li>
-                                                    <li class="like"><a href="#"><i class="ti-thumb-up"></i>15
-                                                            likes</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
@@ -372,11 +236,12 @@
                             <div class="item">
                                 <div class="row">
                                     <div class="col-sm-6 main-post-inner bord-right">
-                                        {% for nat in national %}
+                                        {% for nat in sports %}
                                         <article>
                                             <figure>
-                                                <a href="#"><img src="{{ nat.thumbnail.url }}" height="242" width="345"
-                                                        alt="" class="img-responsive"></a>
+                                                <a href="{% url 'news-detail' pk=nat.pk %}"><img
+                                                        src="{{ nat.thumbnail.url }}" height="242" width="345" alt=""
+                                                        class="img-responsive"></a>
                                             </figure>
                                             <div class="post-info">
                                                 <h3><a href="#">{{ nat.title }}</a>
@@ -389,10 +254,10 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="news-list">
-                                            {% for nat in nationalcat %}
+                                            {% for nat in sportslist %}
                                             <div class="news-list-item">
                                                 <div class="img-wrapper">
-                                                    <a href="#" class="thumb">
+                                                    <a href="{% url 'news-detail' pk=nat.pk %}" class="thumb">
                                                         <img src="{{ nat.thumbnail.url }}" alt=""
                                                             class="img-responsive">
                                                         <div class="link-icon">
@@ -401,7 +266,8 @@
                                                     </a>
                                                 </div>
                                                 <div class="post-info-2">
-                                                    <h5><a href="#" class="title">{{ nat.title }}</a></h5>
+                                                    <h5><a href="{% url 'news-detail' pk=nat.pk %}"
+                                                            class="title">{{ nat.title }}</a></h5>
                                                     <i class="ti-timer"></i> {{ nat.timestamp | timesince }}
                                                 </div>
                                             </div>

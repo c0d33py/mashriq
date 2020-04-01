@@ -19,6 +19,7 @@
                 <div class="form-group row">
                     {% render_field form.title type="text" class="form-control boxed" placeholder="title place" %}
                 </div>
+                
                 <div class="form-group row">
                     {% render_field form.content type="text" %}
                 </div>
@@ -48,7 +49,7 @@
                     </div>
                     <div class="card-block">
                         <div class="form-group">
-                            {% for cat in form.categories %}
+                            {% for cat in form.tags %}
                             <div>
                                 <label for="{{ cat.id_for_label }}">
                                     {{ cat }}

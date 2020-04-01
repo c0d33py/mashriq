@@ -25,6 +25,9 @@
                 {% for cat in object.categories.all %}
                 <strong class="mr-4">{{ cat  }}</strong><br>
                 {% endfor %}
+                {% for tag in object.tags.all %}
+                <strong class="mr-4">{{ tag  }}</strong><br>
+                {% endfor %}
                 <small class="text-muted mb-4">{{ object.timestamp | timesince }} ago</small><br>
                 <h6>{{ object.content|safe }}</h6>
             </div>

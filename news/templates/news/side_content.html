@@ -28,7 +28,7 @@
                         {% for show in latest %}
                         <div class="news-list-item">
                             <div class="img-wrapper">
-                                <a href="#" class="thumb">
+                                <a href="{% url 'news-detail' pk=show.pk %}" class="thumb">
                                     <img src="{{ show.thumbnail.url }}" alt="" class="img-responsive">
                                     <div class="link-icon">
                                         <i class="fa fa-camera"></i>
@@ -36,7 +36,8 @@
                                 </a>
                             </div>
                             <div class="post-info-2">
-                                <h5><a href="#" class="title">{{ show.title }} </a></h5>
+                                <h5><a href="{% url 'news-detail' pk=show.pk %}" class="title">{{ show.title }} </a>
+                                </h5>
                             </div>
                         </div>
                         {% endfor %}
@@ -55,7 +56,7 @@
                     {% for show in showbizs %}
                     <div class="news-list-item">
                         <div class="img-wrapper">
-                            <a href="#" class="thumb">
+                            <a href="{% url 'news-detail' pk=show.pk %}" class="thumb">
                                 <img src="{{ show.thumbnail.url }}" alt="" class="img-responsive">
                                 <div class="link-icon">
                                     <i class="fa fa-camera"></i>
@@ -63,7 +64,7 @@
                             </a>
                         </div>
                         <div class="post-info-2">
-                            <h5><a href="#" class="title">{{ show.title }} </a></h5>
+                            <h5><a href="{% url 'news-detail' pk=show.pk %}" class="title">{{ show.title }} </a></h5>
                         </div>
                     </div>
                     {% endfor %}

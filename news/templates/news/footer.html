@@ -6,39 +6,31 @@
       <!-- START FOOTER BOX (About) -->
       <div class="col-sm-3 footer-box">
         <div class="about-inner">
-          <img
-            src="http://inews.themepk.com/news/inews_v1.0/assets/images/logo-white.png"
-            class="img-responsive"
-            alt=""
-          />
+          <img src="{% static 'rtl/assets/img/mashriq-logo.jpg' %}" class="img-responsive" alt="" />
         </div>
       </div>
       <!--  END OF /. FOOTER BOX (About) -->
 
       <!-- START FOOTER BOX (Category) -->
       <div class="col-sm-2 footer-box">
-        <h3 class="wiget-title">Category</h3>
+        <h3 class="wiget-title">خبریں</h3>
         <ul class="menu-services">
-          <li><a href="#">Business</a></li>
-          <li><a href="#">LifeStyle</a></li>
-          <li><a href="#">Technology</a></li>
-          <li><a href="#">Culture</a></li>
-          <li><a href="#">Entertainment</a></li>
+          <li><a href="{% url 'news-pakistan' %}">پاکستان</a></li>
+          <li><a href="{% url 'news-international' %}">بین الاقوامی خبریں</a></li>
+          <li><a href="{% url 'news-business' %}"> کاروبار</a></li>
+          <li><a href="{% url 'news-sports' %}"> سپورٹس</a></li>
         </ul>
       </div>
       <!-- END OF /. FOOTER BOX (Category) -->
       <!-- START FOOTER BOX (Recent Post) -->
       <div class="col-sm-4 footer-box">
-        <h3 class="wiget-title">Recent Post</h3>
+        <h3 class="wiget-title">تازہ ترین</h3>
         <div class="footer-news-grid">
+          {% for show in footer %}
           <div class="news-list-item">
             <div class="img-wrapper">
               <a href="#" class="thumb">
-                <img
-                  src="http://inews.themepk.com/news/inews_v1.0/assets/images/115x85-1.jpg"
-                  alt=""
-                  class="img-responsive"
-                />
+                <img src="{{ show.thumbnail.url }}" alt="" class="img-responsive" />
                 <div class="link-icon">
                   <i class="fa fa-camera"></i>
                 </div>
@@ -46,39 +38,14 @@
             </div>
             <div class="post-info-2">
               <h5>
-                <a href="#" class="title"
-                  >Cooking Recipes Anytime And Anywhere</a
-                >
+                <a href="#" class="title">{{ show.title }}</a>
               </h5>
               <ul class="authar-info">
-                <li><i class="ti-timer"></i> May 15, 2016</li>
+                <li><i class="ti-timer"></i> {{ show.timestamp | timesince }}</li>
               </ul>
             </div>
           </div>
-          <div class="news-list-item">
-            <div class="img-wrapper">
-              <a href="#" class="thumb">
-                <img
-                  src="http://inews.themepk.com/news/inews_v1.0/assets/images/115x85-2.jpg"
-                  alt=""
-                  class="img-responsive"
-                />
-                <div class="link-icon">
-                  <i class="fa fa-camera"></i>
-                </div>
-              </a>
-            </div>
-            <div class="post-info-2">
-              <h5>
-                <a href="#" class="title"
-                  >Cooking Recipes Anytime And Anywhere</a
-                >
-              </h5>
-              <ul class="authar-info">
-                <li><i class="ti-timer"></i> May 15, 2016</li>
-              </ul>
-            </div>
-          </div>
+          {% endfor %}
         </div>
       </div>
       <!-- END OF /. FOOTER BOX (Recent Post) -->

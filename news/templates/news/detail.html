@@ -69,131 +69,35 @@
                                 <div class="item">
                                     <div class="news-grid-2">
                                         <div class="row row-margin">
+                                            {% for post in related %}
                                             <div class="col-xs-6 col-sm-4 col-md-4 col-padding">
                                                 <div class="grid-item">
                                                     <div class="grid-item-img">
                                                         <a href="#">
-                                                            <img src="http://inews.themepk.com/news/inews_v1.0/assets/images/218x150-1.jpg"
-                                                                class="img-responsive" alt="">
+                                                            <img src="{{ post.thumbnail.url }}" class="img-responsive"
+                                                                alt="">
                                                             <div class="link-icon"><i class="fa fa-play"></i></div>
                                                         </a>
                                                     </div>
-                                                    <h5><a href="#" class="title">Lorem Ipsum is simply dummy text of
-                                                            the printing.</a></h5>
+                                                    <h5><a href="#" class="title">{{ post.title }}</a></h5>
+                                                    <h5><a href="#" class="title">{{ post.name }}</a></h5>
                                                     <ul class="authar-info">
-                                                        <li>May 15, 2016</li>
-                                                        <li class="hidden-sm"><a href="#" class="link">15 likes</a></li>
+                                                        <li>{{ post.timestamp | timesince }}</li>
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <div class="col-xs-6 col-sm-4 col-md-4 col-padding">
-                                                <div class="grid-item">
-                                                    <div class="grid-item-img">
-                                                        <a href="#">
-                                                            <img src="http://inews.themepk.com/news/inews_v1.0/assets/images/218x150-2.jpg"
-                                                                class="img-responsive" alt="">
-                                                            <div class="link-icon"><i class="fa fa-camera"></i></div>
-                                                        </a>
-                                                    </div>
-                                                    <h5><a href="#" class="title">It is a long established fact that a
-                                                            reader will be distracted by</a></h5>
-                                                    <ul class="authar-info">
-                                                        <li>May 15, 2016</li>
-                                                        <li class="hidden-sm"><a href="#" class="link">15 likes</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="hidden-xs col-sm-4 col-md-4 col-padding">
-                                                <div class="grid-item">
-                                                    <div class="grid-item-img">
-                                                        <a href="#">
-                                                            <img src="http://inews.themepk.com/news/inews_v1.0/assets/images/218x150-3.jpg"
-                                                                class="img-responsive" alt="">
-                                                            <div class="link-icon"><i class="fa fa-camera"></i></div>
-                                                        </a>
-                                                    </div>
-                                                    <h5><a href="#" class="title">There are many variations of passages
-                                                            of Lorem Ipsum.</a></h5>
-                                                    <ul class="authar-info">
-                                                        <li>May 15, 2016</li>
-                                                        <li class="hidden-sm"><a href="#" class="link">15 likes</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- item two -->
-                                <div class="item">
-                                    <div class="news-grid-2">
-                                        <div class="row row-margin">
-                                            <div class="col-xs-6 col-sm-4 col-md-4 col-padding">
-                                                <div class="grid-item">
-                                                    <div class="grid-item-img">
-                                                        <a href="#">
-                                                            <img src="http://inews.themepk.com/news/inews_v1.0/assets/images/218x150-4.jpg"
-                                                                class="img-responsive" alt="">
-                                                            <div class="link-icon"><i class="fa fa-play"></i></div>
-                                                        </a>
-                                                    </div>
-                                                    <h5><a href="#" class="title">Lorem Ipsum is simply dummy text of
-                                                            the printing.</a></h5>
-                                                    <ul class="authar-info">
-                                                        <li>May 15, 2016</li>
-                                                        <li class="hidden-sm"><a href="#" class="link">15 likes</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-6 col-sm-4 col-md-4 col-padding">
-                                                <div class="grid-item">
-                                                    <div class="grid-item-img">
-                                                        <a href="#">
-                                                            <img src="http://inews.themepk.com/news/inews_v1.0/assets/images/218x150-2.jpg"
-                                                                class="img-responsive" alt="">
-                                                            <div class="link-icon"><i class="fa fa-camera"></i></div>
-                                                        </a>
-                                                    </div>
-                                                    <h5><a href="#" class="title">It is a long established fact that a
-                                                            reader will be distracted by</a></h5>
-                                                    <ul class="authar-info">
-                                                        <li>May 15, 2016</li>
-                                                        <li class="hidden-sm"><a href="#" class="link">15 likes</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="hidden-xs col-sm-4 col-md-4 col-padding">
-                                                <div class="grid-item">
-                                                    <div class="grid-item-img">
-                                                        <a href="#">
-                                                            <img src="http://inews.themepk.com/news/inews_v1.0/assets/images/218x150-1.jpg"
-                                                                class="img-responsive" alt="">
-                                                            <div class="link-icon"><i class="fa fa-camera"></i></div>
-                                                        </a>
-                                                    </div>
-                                                    <h5><a href="#" class="title">There are many variations of passages
-                                                            of Lorem Ipsum.</a></h5>
-                                                    <ul class="authar-info">
-                                                        <li>May 15, 2016</li>
-                                                        <li class="hidden-sm"><a href="#" class="link">15 likes</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
-
             <!-- START SIDE CONTENT -->
-
-
+            {% include 'news/side_content.html' %}
         </div>
     </div>
 </main>
-
-
 {% endblock %}

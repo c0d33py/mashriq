@@ -1,20 +1,14 @@
 from django import forms
+from taggit.models import Tag
 from django.forms.widgets import CheckboxSelectMultiple
 from . models import Article
-from . models import Category
 
 
 class ArticleForm(forms.ModelForm):
+    tags = forms.ModelMultipleChoiceField(queryset=Tag.objects.all(),
+                                          widget=forms.CheckboxSelectMultiple())
+
     class Meta:
         model = Article
-        fields = ['title', 'categories', 'thumbnail',
+        fields = ['title', 'thumbnail', 'tags',
                   'content', 'featured', 'status']
-        widgets = {
-            'categories': CheckboxSelectMultiple(),
-        }
-
-
-class CatForm(forms.ModelForm):
-    class Meta:
-        model = Category
-        fields = ['name', 'slug']

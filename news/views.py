@@ -1,10 +1,11 @@
-from django.shortcuts import render, get_object_or_404, reverse, redirect
+from django.shortcuts import render, get_object_or_404, reverse, redirect, get_list_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from news.models import Article
-from news.forms import ArticleForm, Category
+from news.forms import ArticleForm
 from .models import Article
 from django.views.generic import (
+    View,
     CreateView,
     ListView,
     DetailView,
@@ -16,33 +17,45 @@ from django.views.generic import (
 
 
 def index(request):
-    carousels = Article.objects.filter(status=True,
-                                       categories__exact='7'
-                                       ).order_by('-timestamp')[:5]
-    sliders = Article.objects.filter(status=True,
-                                     categories__exact='9'
-                                     ).order_by('-timestamp',)[:4]
-    # national news
-    national = Article.objects.filter(status=True, featured=True,
-                                      categories__exact='9'
-                                      ).order_by('-timestamp',)[:2]
-    nationalcat = Article.objects.filter(status=True,
-                                         categories__exact='9'
-                                         ).order_by('-timestamp',
-                                                    ).exclude(featured=True)
-    latest = Article.objects.all().order_by('-timestamp',)
+    carousels = Article.status_objects.filter(tags__exact='1')[:5]
+    sliders = Article.status_objects.all().exclude(tags__exact='1')[:4]
 
-    showbizs = Article.objects.filter(status=True,
-                                      categories__exact='7'
-                                      ).order_by('-timestamp',)[:5]
+    # national news
+
+    national = Article.status_objects.filter(
+        tags__exact='1', featured=True)
+
+    nationallist = Article.status_objects.filter(
+        tags__exact='1').exclude(featured=True)[:4]
+
+    # international
+    worlds = Article.status_objects.filter(tags__exact='2', featured=True,)[:2]
+    worldlists = Article.status_objects.filter(
+        tags__exact='2').exclude(featured=True)[:4]
+    # business
+    Business = Article.status_objects.filter(tags__exact='2')[:4]
+    #  sports
+    sports = Article.status_objects.filter(tags__exact='4', featured=True)
+    sportslist = Article.status_objects.filter(
+        tags__exact='3').exclude(featured=True)[:4]
+    # showbiz sidebar
+    latest = Article.status_objects.all()[:5]
+    footer = Article.status_objects.all()[:2]
+    showbizs = Article.status_objects.filter(tags__exact='2')[:5]
 
     context = {
         'carousels': carousels,
         'sliders': sliders,
         'national': national,
-        'nationalcat': nationalcat,
-        'latest': latest,
+        'nationallist': nationallist,
+        'worlds': worlds,
+        'worldlists': worldlists,
+        'business': Business,
+        'sports': sports,
+        'sportslist': sportslist,
         'showbizs': showbizs,
+        'latest': latest,
+        'footer': footer,
         'title': 'Home'
     }
     return render(request, 'news/index.html', context)
@@ -50,10 +63,21 @@ def index(request):
 
 # latest post Detail views
 def Latest(request):
-    obj = Article.objects.all().order_by('-timestamp',)
+    obj = Article.objects.filter(status=True,).order_by('-timestamp',)
+    latest = Article.objects.filter(status=True,
+                                    categories__exact='12'
+                                    ).order_by('-timestamp',)[:5]
+
+    showbizs = Article.objects.filter(status=True,
+                                      categories__exact='8'
+                                      ).order_by('-timestamp',)[:5]
+    footer = Article.objects.filter(status=True,).order_by('-timestamp',)[:2]
 
     context = {
         'object': obj,
+        'showbizs': showbizs,
+        'latest': latest,
+        'footer': footer,
         'title': 'تازہ ترین'
     }
     return render(request, 'news/latest.html', context)
@@ -61,11 +85,22 @@ def Latest(request):
 
 # pakistan detail views
 def pakistan(request):
-    obj = Article.objects.filter(
-        categories__exact='7').order_by('-timestamp',)
+    obj = Article.objects.filter(status=True,
+                                 categories__exact='12').order_by('-timestamp',)
+    latest = Article.objects.filter(status=True,
+                                    categories__exact='12'
+                                    ).order_by('-timestamp',)[:5]
+
+    showbizs = Article.objects.filter(status=True,
+                                      categories__exact='8'
+                                      ).order_by('-timestamp',)[:5]
+    footer = Article.objects.filter(status=True,).order_by('-timestamp',)[:2]
 
     context = {
         'object': obj,
+        'showbizs': showbizs,
+        'latest': latest,
+        'footer': footer,
         'title': 'پاکستان'
     }
     return render(request, 'news/pakistan.html', context)
@@ -73,35 +108,67 @@ def pakistan(request):
 
 # international detail viwes
 def international(request):
-    obj = Article.objects.filter(
-        categories__exact='7').order_by('-timestamp',)
+    obj = Article.objects.filter(status=True,
+                                 categories__exact='10').order_by('-timestamp',)
+    latest = Article.objects.filter(status=True,
+                                    categories__exact='12'
+                                    ).order_by('-timestamp',)[:5]
+
+    showbizs = Article.objects.filter(status=True,
+                                      categories__exact='8'
+                                      ).order_by('-timestamp',)[:5]
+    footer = Article.objects.filter(status=True,).order_by('-timestamp',)[:2]
 
     context = {
         'object': obj,
+        'showbizs': showbizs,
+        'latest': latest,
+        'footer': footer,
         'title': 'بین الاقوامی خبریں'
     }
     return render(request, 'news/international.html', context)
 
 
 # programes detail views
-def programes(request):
-    obj = Article.objects.filter(
-        categories__exact='7').order_by('-timestamp',)
+def business(request):
+    obj = Article.objects.filter(status=True,
+                                 categories__exact='12').order_by('-timestamp',)
+    latest = Article.objects.filter(status=True
+                                    ).order_by('-timestamp',)[:5]
+
+    showbizs = Article.objects.filter(status=True,
+                                      categories__exact='8'
+                                      ).order_by('-timestamp',)[:5]
+    footer = Article.objects.filter(status=True).order_by('-timestamp',)[:2]
 
     context = {
         'object': obj,
-        'title': ' پروگرامز'
+        'showbizs': showbizs,
+        'latest': latest,
+        'footer': footer,
+        'title': ' کاروبار'
     }
-    return render(request, 'news/programes.html', context)
+    return render(request, 'news/business.html', context)
 
 
 # showbiz detail views
 def showbiz(request):
-    obj = Article.objects.filter(
-        categories__exact='7').order_by('-timestamp',)
+    obj = Article.objects.filter(status=True,
+                                 categories__exact='8').order_by('-timestamp',)
+    latest = Article.objects.filter(status=True,
+                                    categories__exact='12'
+                                    ).order_by('-timestamp',)[:5]
+
+    showbizs = Article.objects.filter(status=True,
+                                      categories__exact='8'
+                                      ).order_by('-timestamp',)[:5]
+    footer = Article.objects.filter(status=True).order_by('-timestamp',)[:2]
 
     context = {
         'object': obj,
+        'showbizs': showbizs,
+        'latest': latest,
+        'footer': footer,
         'title': ' شوبز'
     }
     return render(request, 'news/showbiz.html', context)
@@ -110,10 +177,21 @@ def showbiz(request):
 # '''sports detial views'''
 def sports(request):
     obj = Article.objects.filter(
-        categories__exact='7').order_by('-timestamp',)
+        categories__exact='9').order_by('-timestamp',)
+    latest = Article.objects.filter(status=True,
+                                    categories__exact='12'
+                                    ).order_by('-timestamp',)[:5]
+
+    showbizs = Article.objects.filter(status=True,
+                                      categories__exact='8'
+                                      ).order_by('-timestamp',)[:5]
+    footer = Article.objects.filter(status=True,).order_by('-timestamp',)[:2]
 
     context = {
         'object': obj,
+        'showbizs': showbizs,
+        'latest': latest,
+        'footer': footer,
         'title': ' سپورٹس'
     }
     return render(request, 'news/sports.html', context)
@@ -121,21 +199,40 @@ def sports(request):
 
 # live streeming views website
 def Live(request):
-    obj = Article.objects.filter(
-        categories__exact='7').order_by('-timestamp',)
+    footer = Article.objects.all().order_by('-timestamp',)[:2]
 
     context = {
-        'object': obj,
         'title': 'live'
     }
     return render(request, 'news/live.html', context)
 
+# def trip_single(request, slug):
+#     trip = get_object_or_404(Trip, slug=slug)
+#     return render(request, 'app_trip/trip_single.html', {'trip': trip, 'trip_related': trip_related})
 
-# live News Detail views website
+
 def NewsDetail(request, pk):
     obj = get_object_or_404(Article, pk=pk)
+    related = obj.tags.similar_objects()
+    # print(related)
+
+    # i want to  grab values like that
+
+    # sidebar data
+    latest = Article.objects.filter(status=True,
+                                    ).order_by('-timestamp',)[:5]
+
+    showbizs = Article.objects.filter(status=True,
+                                      tags__exact='8'
+                                      ).order_by('-timestamp',)[:5]
+    footer = Article.objects.filter(status=True).order_by('-timestamp',)[:2]
+
     context = {
-        'object': obj
+        'object': obj,
+        'related': related,
+        'showbizs': showbizs,
+        'footer': footer,
+        'latest': latest
     }
     return render(request, 'news/detail.html', context)
 
@@ -147,13 +244,15 @@ def NewsDetail(request, pk):
 class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = ArticleForm
     template_name = 'news/article_create.html'
-    success_url = '/article/list/'
     success_message = "%(title)s was created successfully"
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         print(form.cleaned_data)
         return super().form_valid(form)
+
+    def get_success_url(self, **kwargs):
+        return self.object.get_success_url()
 
 
 # ListViews
@@ -184,7 +283,7 @@ class ArticleUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     form_class = ArticleForm
     template_name = 'news/article_create.html'
     success_message = "%(title)s was created successfully"
-    # success_url = 'article-list'
+    # success_url = 'article-detail'
 
     def get_object(self):
         pk_ = self.kwargs.get('pk')
@@ -195,8 +294,10 @@ class ArticleUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         print(form.cleaned_data)
         return super().form_valid(form)
 
+    def get_success_url(self, **kwargs):
+        return self.object.get_success_url()
 
-# DeleteViews
+    # DeleteViews
 
 
 class ArticleDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):

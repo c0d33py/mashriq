@@ -9,10 +9,14 @@ config.encoding = 'cp1251'
 SECRET_KEY = config('SECRET_KEY')
 
 
+SITE_ID = 1
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
@@ -22,7 +26,9 @@ INSTALLED_APPS = [
     'news.apps.NewsConfig',
 
     'widget_tweaks',
+    'taggit',
     'crispy_forms',
+    'django_extensions',
     'ckeditor',
     'ckeditor_uploader',
     'multiselectfield',
