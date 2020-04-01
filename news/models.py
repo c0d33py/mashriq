@@ -37,7 +37,7 @@ class Article(models.Model):
         if self.featured == True:
             Article.objects.filter(
                 pk__in=(
-                    Article.objects.filter(
+                    Article.status_objects.filter(
                         featured=True,
                     ).values_list('pk', flat=True)[:2]
                 )
