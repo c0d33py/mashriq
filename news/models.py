@@ -5,6 +5,28 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 from PIL import Image
+from datetime import datetime
+import os
+
+
+def set_filename_format(now, instance, filename):
+    return "{date}-{microsecond}{extension}".format(
+        date=str(now.date()),
+        microsecond=now.microsecond,
+        extension=os.path.splitext(filename)[1],
+    )
+
+
+def article_path(instance, filename):
+    now = datetime.now()
+
+    path = "article/{year}/{month}/{day}/{filename}".format(
+        year=now.year,
+        month=now.month,
+        day=now.day,
+        filename=set_filename_format(now, instance, filename),
+    )
+    return path
 
 
 class ArticleQuerySet(models.Manager):
@@ -17,7 +39,7 @@ class Article(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, blank=True, null=True)
     thumbnail = models.ImageField(default='def.jpg',
-                                  upload_to='article/thumbnails',
+                                  upload_to=article_path,
                                   blank=True, help_text='(optional)')
     timestamp = models.DateTimeField(auto_now_add=True)
     content = RichTextUploadingField(blank=True)
@@ -35,13 +57,8 @@ class Article(models.Model):
 
     def save(self, *args, **kwargs):
         if self.featured == True:
-            Article.objects.filter(
-                pk__in=(
-                    Article.status_objects.filter(
-                        featured=True,
-                    ).values_list('pk', flat=True)[:2]
-                )
-            ).update(featured=False)
+            Article.objects.filter(pk__in=(Article.objects.filter(
+                featured=True,).values_list('pk', flat=True)[:0])).update(featured=False)
             self.featured = True
         super(Article, self).save(*args, **kwargs)
 

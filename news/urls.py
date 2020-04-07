@@ -1,9 +1,7 @@
 from django.contrib.sitemaps.views import sitemap
-from django.contrib.sitemaps import GenericSitemap
+from .sitemaps import StaticViewSitemap, NewsSitemap
 from .models import Article
 from django.urls import path
-from .sitemaps import StaticViewSitemap, NewsSitemap
-# from .feeds import LatestArticleFeed
 from . import views
 from .views import (ArticleListView,
                     ArticleCreateView,
@@ -31,8 +29,6 @@ urlpatterns = [
     # sitemap
     path('sitemap.xml/', sitemap, {'sitemaps': sitemaps},
          name='django.contrib.sitemaps.views.sitemap'),
-    # feeds
-    #     path('feed/rss', LatestArticleFeed()),
 
 
     # this urls for user interface
