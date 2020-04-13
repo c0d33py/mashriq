@@ -4,7 +4,7 @@
 
 {% block body %}
 <section class="section">
-
+    <!-- main Dashboard buttons -->
     <div class="row">
         <div class="col-md-4">
             <a class="btn btn-primary btn-lg" href="{% url 'article-create' %}">
@@ -21,13 +21,15 @@
             </a>
         </div>
         <div class="col-md-4">
-            <a class="btn btn-warning btn-lg" href="#">
+            <a class="btn btn-warning btn-lg" href="{% url 'article-draft' %}">
                 <span class="glyphicon glyphicon-shopping-cart pull-left" style="font-size:xx-large;margin:5px;"></span>
-                Buy Now<br>
-                <small>Instant and secure</small>
+                Draft Article<br>
+                <small>Show Draft Articles</small>
             </a>
         </div>
     </div>
+    <!-- end button section -->
+
     <div class="col-md-12" style="margin-top: 10px; color: dark;">
         <div class="card">
             <div class="card-block ">
@@ -35,31 +37,49 @@
                     <thead>
                         <tr>
                             <th>Tilte</th>
+                            <th>Categories</th>
                             <th>status</th>
                             <th>Date time</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for article in articles %}
+                        {% for item in articles %}
                         <tr>
-                            <td><a href="{% url 'article-detail' pk=article.pk %}"
-                                    style="color: #4f5f6f;">{{ article.title }}</a>
+                            <td><a href="{% url 'article-detail' pk=item.pk %}"
+                                    style="color: #4f5f6f;">{{ item.title }}</a>
                             </td>
-                            <td style="font-size: 14px;">{{ article.status }}</td>
-                            <td style="font-size: 14px;">{{ article.timestamp | timesince }}</td>
+                            {% for cat in item.tags.all %}
+                            <td style="font-size: 14px;">{{ cat.slug }}</td>
+                            {% endfor %}
+                            {% if not item.status %}
+                            <td class="btn btn-danger text-center" style="font-size: 14px;">In Draft</td>
+                            {% else %}
+                            <td class="btn btn-success" style="font-size: 14px;">Published</td>
+                            {% endif %}
+                            <td style="font-size: 14px;">{{ item.timestamp | timesince }}</td>
+                            <td>
+                                <form method="POST">{% csrf_token %}
+                                    <input type="hidden" name="item_id" value="{{item.id}}" />
+                                    <input type="submit" class="btn btn-danger" value=" delete">
+                                </form>
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
                     <tfoot>
                         <tr>
                             <th>Tilte</th>
+                            <th>Categories</th>
                             <th>status</th>
                             <th>Date time</th>
+                            <th>Action</th>
                         </tr>
                     </tfoot>
                 </table>
             </div>
         </div>
     </div>
+
 </section>
 {% endblock %}

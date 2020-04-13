@@ -1,9 +1,9 @@
 from django.contrib.sitemaps.views import sitemap
 from .sitemaps import StaticViewSitemap, NewsSitemap
-from .models import Article
 from django.urls import path
 from . import views
 from .views import (ArticleListView,
+                    ArticleDraftListView,
                     ArticleCreateView,
                     ArticleDetailView,
                     ArticleUpdateView,
@@ -14,6 +14,7 @@ sitemaps = {
     'static': StaticViewSitemap,
     'news': NewsSitemap,
 }
+
 
 urlpatterns = [
     # client side interface
@@ -33,6 +34,7 @@ urlpatterns = [
 
     # this urls for user interface
     path('article/list/', ArticleListView.as_view(), name='article-list'),
+    path('article/draft/', ArticleDraftListView.as_view(), name='article-draft'),
     path('article/create/', ArticleCreateView.as_view(), name='article-create'),
     path('article/<int:pk>/detail/',
          ArticleDetailView.as_view(), name='article-detail'),

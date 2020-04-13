@@ -227,6 +227,64 @@
                 <div class="post-inner">
                     <!--post header-->
                     <div class="post-head">
+                        <h2 class="title">آج کے کالمز</h2>
+                    </div>
+                    <!-- post body -->
+                    <div class="post-body">
+                        <div class="">
+                            <!-- item one -->
+                            <div class="item">
+                                <div class="row">
+                                    <div class="col-sm-6 main-post-inner bord-right">
+                                        {% for nat in featured_column %}
+                                        <article>
+                                            <figure>
+                                                <a href="{% url 'news-detail' pk=nat.pk %}"><img
+                                                        src="{{ nat.thumbnail.url }}" height="242" width="345" alt=""
+                                                        class="img-responsive"></a>
+                                            </figure>
+                                            <div class="post-info">
+                                                <h3><a href="#">{{ nat.title }}</a>
+                                                </h3>
+                                                <i class="ti-timer"></i> {{ nat.timestamp | timesince }}
+                                                <p></p>
+                                            </div>
+                                        </article>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="news-list">
+                                            {% for nat in regular_column %}
+                                            <div class="news-list-item">
+                                                <div class="img-wrapper">
+                                                    <a href="{% url 'news-detail' pk=nat.pk %}" class="thumb">
+                                                        <img src="{{ nat.thumbnail.url }}" alt=""
+                                                            class="img-responsive">
+                                                        <div class="link-icon">
+                                                            <i class="fa fa-camera"></i>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="post-info-2">
+                                                    <h5><a href="{% url 'news-detail' pk=nat.pk %}"
+                                                            class="title">{{ nat.title }}</a></h5>
+                                                    <i class="ti-timer"></i> {{ nat.timestamp | timesince }}
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="post-inner">
+                    <!--post header-->
+                    <div class="post-head">
                         <h2 class="title">سپورٹس</h2>
                     </div>
                     <!-- post body -->

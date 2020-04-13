@@ -79,15 +79,13 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-menu">
                 <ul class="nav navbar-nav navbar-left" data-in="" data-out="">
-                    <li class="active">
-                    <li class="active"><a href="/">صفحہ اوّل</a></li>
-                    </li>
-                    <li><a href="{% url 'news-latest' %}">تازہ ترین</a></li>
-                    <li><a href="{% url 'news-pakistan' %}">پاکستان</a></li>
-                    <li><a href="{% url 'news-international' %}">بین الاقوامی خبریں</a></li>
-                    <li><a href="{% url 'news-business' %}"> کاروبار</a></li>
-                    <li><a href="{% url 'news-showbiz' %}"> شوبز</a></li>
-                    <li><a href="{% url 'news-sports' %}"> سپورٹس</a></li>
+                    <li class="{{ home }}"><a href="/">صفحہ اوّل</a></li>
+                    <li class="{{ latests }}"><a href="{% url 'news-latest' %}">تازہ ترین</a></li>
+                    <li class="{{ pakistan }}"><a href="{% url 'news-pakistan' %}">پاکستان</a></li>
+                    <li class="{{ international }}"><a href="{% url 'news-international' %}">بین الاقوامی خبریں</a></li>
+                    <li class="{{ buisness }}"><a href="{% url 'news-business' %}"> کاروبار</a></li>
+                    <li class="{{ showbiz }}"><a href="{% url 'news-showbiz' %}"> شوبز</a></li>
+                    <li class="{{ sports }}"><a href="{% url 'news-sports' %}"> سپورٹس</a></li>
                     <li class="active"><a href="https://www.youtube.com/channel/UCTowW3WDjv0kGeyLWPOVTHA"
                             target="_blank"> <i class="fa fa-youtube-play fa-lg"></i> </a>
                     </li>

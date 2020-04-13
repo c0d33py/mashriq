@@ -23,7 +23,6 @@
                             <tr>
                                 <td><a href="{% url 'article-detail' pk=article.pk %}">{{ article.title }}</a>
                                 </td>
-                                
                                 {% for cat in article.tags.all %}
                                 <td style="font-size: 14px;">{{ cat.slug }}</td>
                                 {% endfor %}

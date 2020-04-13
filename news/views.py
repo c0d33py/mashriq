@@ -30,7 +30,12 @@ def index(request):
         tags__exact='2').exclude(featured=True)[:4]
     # business
     Business = Article.status_objects.filter(tags__exact='5')[:4]
-    #  sports
+    #  columns
+    featured_column = Article.status_objects.filter(
+        featured=True, tags__exact='4')[:1]
+    regular_column = Article.status_objects.filter(tags__exact='4'
+                                                   ).exclude(featured=True)[:4]
+
     sports = Article.status_objects.filter(featured=True, tags__exact='3')[:1]
     sportslist = Article.status_objects.filter(tags__exact='3'
                                                ).exclude(featured=True)[:4]
@@ -47,12 +52,15 @@ def index(request):
         'worlds': worlds,
         'worldlists': worldlists,
         'business': Business,
+        'featured_column': featured_column,
+        'regular_column': regular_column,
         'sports': sports,
         'sportslist': sportslist,
         'showbizs': showbizs,
         'latest': latest,
         'footer': footer,
-        'title': 'Home'
+        'title': 'Home',
+        'home': 'active',
     }
     return render(request, 'news/index.html', context)
 
@@ -70,7 +78,9 @@ def Latest(request):
         'showbizs': showbizs,
         'latest': latest,
         'footer': footer,
-        'title': 'تازہ ترین'
+        'title': 'تازہ ترین',
+        'latests': 'active',
+
     }
     return render(request, 'news/latest.html', context)
 
@@ -88,7 +98,9 @@ def pakistan(request):
         'showbizs': showbizs,
         'latest': latest,
         'footer': footer,
-        'title': 'پاکستان'
+        'title': 'پاکستان',
+        'pakistan': 'active',
+
     }
     return render(request, 'news/pakistan.html', context)
 
@@ -106,7 +118,9 @@ def international(request):
         'showbizs': showbizs,
         'latest': latest,
         'footer': footer,
-        'title': 'بین الاقوامی خبریں'
+        'title': 'بین الاقوامی خبریں',
+        'international': 'active',
+
     }
     return render(request, 'news/international.html', context)
 
@@ -124,7 +138,9 @@ def business(request):
         'showbizs': showbizs,
         'latest': latest,
         'footer': footer,
-        'title': ' کاروبار'
+        'title': ' کاروبار',
+        'buisness': 'active',
+
     }
     return render(request, 'news/business.html', context)
 
@@ -143,7 +159,9 @@ def showbiz(request):
         'latest': latest,
         'footer': footer,
         'title': ' شوبز',
-        'title2': ' سپورٹس'
+        'title2': ' سپورٹس',
+        'showbiz': 'active',
+
     }
     return render(request, 'news/showbiz.html', context)
 
@@ -161,7 +179,9 @@ def sports(request):
         'showbizs': showbizs,
         'latest': latest,
         'footer': footer,
-        'title': ' سپورٹس'
+        'title': ' سپورٹس',
+        'sports': 'active',
+
     }
     return render(request, 'news/sports.html', context)
 

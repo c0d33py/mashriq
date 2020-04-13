@@ -18,15 +18,13 @@
                     <strong class="mr-4">{{ user.username }}</strong>
                     <a class="btn btn-warning btn-sm " href="{% url 'article-update' pk=object.pk %}">Update</a>
                     <a class="btn btn-danger btn-sm " href="{% url 'article-delete' pk=object.pk %}">Delete</a>
+                    <a class="btn btn-primary btn-sm " href="{% url 'article-create' %}">Add New</a>
                 </div>
                 <hr>
 
                 <h3>{{ object.title}}</h3>
-                {% for cat in object.categories.all %}
+                {% for cat in object.tags.all %}
                 <strong class="mr-4">{{ cat  }}</strong><br>
-                {% endfor %}
-                {% for tag in object.tags.all %}
-                <strong class="mr-4">{{ tag  }}</strong><br>
                 {% endfor %}
                 <small class="text-muted mb-4">{{ object.timestamp | timesince }} ago</small><br>
                 <h6>{{ object.content|safe }}</h6>

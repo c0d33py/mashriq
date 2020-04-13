@@ -24,6 +24,7 @@ INSTALLED_APPS = [
 
     'accounts.apps.AccountsConfig',
     'news.apps.NewsConfig',
+    'django_social_share',
 
     'widget_tweaks',
     'taggit',
@@ -88,8 +89,19 @@ CKEDITOR_UPLOAD_PATH = 'article/'
 CKEDITOR_IMAGE_BACKEND = "pillow"
 CKEDITOR_CONFIGS = {
     'default': {
+        'skin': 'moono',
         'width': 'auto',
-    },
+        # 'extraPlugins': ['youtube', ],
+        'extraPlugins': ','.join(['youtube']),
+        'toolbar': [
+            ['Bold', 'Italic', 'Underline'],
+            ['Font', 'FontSize', 'TextColor', 'BGColor'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-',
+                'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink'],
+            ['RemoveFormat', 'Source', 'Image', 'Youtube']
+        ],
+    }
 }
 
 

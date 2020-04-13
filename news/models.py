@@ -1,6 +1,5 @@
 from ckeditor_uploader.fields import RichTextUploadingField
 from taggit.managers import TaggableManager
-from ckeditor.fields import RichTextField
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
