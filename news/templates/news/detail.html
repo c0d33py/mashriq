@@ -22,9 +22,28 @@
                             <figure class="social-icon">
                                 <img src="{{ object.thumbnail.url }}" class="img-responsive" alt="" />
                                 <div>
-                                    <a href="https://www.facebook.com/sharer.php?u=http://nexcop.com/"
-                                        target="_blank"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <!-- <a href="https://www.facebook.com/sharer.php?u=http://nexcop.com/{{ request.get_full_path|urlencode }}"
+                                        target="_blank"><i class="fa fa-facebook"></i></a> -->
+                                    {% autoescape on %}
+
+                                    {% with "http://nexcop.com/" as host %}
+
+                                    {% with "twitter" as service %}
+                                    <a href="https://www.facebook.com/sharer.php?u={{ host }}{{ request.get_full_path|urlencode }}&amp;text={{ object.title }}"
+                                        target="_blank">
+                                        <i class="fa fa-facebook"></i></a>
+                                    {% endwith%}
+
+                                    {% with "twitter" as service %}
+                                    <a href="http://twitter.com/share?url={{ host }}{{ page_url }}&amp;text={{ object.title }}"
+                                        target="_blank">
+                                        <i class="fa fa-twitter"></i></a>
+                                    {% endwith%}
+
+                                    {% endwith %}
+
+                                    {% endautoescape %}
+
 
                                 </div>
                             </figure>

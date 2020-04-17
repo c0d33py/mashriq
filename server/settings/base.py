@@ -91,7 +91,6 @@ CKEDITOR_CONFIGS = {
     'default': {
         'skin': 'moono',
         'width': 'auto',
-        # 'extraPlugins': ['youtube', ],
         'extraPlugins': ','.join(['youtube']),
         'toolbar': [
             ['Bold', 'Italic', 'Underline'],
