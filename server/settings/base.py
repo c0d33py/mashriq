@@ -24,9 +24,11 @@ INSTALLED_APPS = [
 
     'accounts.apps.AccountsConfig',
     'news.apps.NewsConfig',
-    'django_social_share',
+    'prompter.apps.PrompterConfig',
 
+    'django_social_share',
     'widget_tweaks',
+    'embed_video',
     'taggit',
     'crispy_forms',
     'django_extensions',
@@ -91,7 +93,7 @@ CKEDITOR_CONFIGS = {
     'default': {
         'skin': 'moono',
         'width': 'auto',
-        'extraPlugins': ','.join(['youtube']),
+        # 'extraPlugins': ','.join(['youtube']),
         'toolbar': [
             ['Bold', 'Italic', 'Underline'],
             ['Font', 'FontSize', 'TextColor', 'BGColor'],
@@ -111,3 +113,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGOUT_REDIRECT_URL = 'login'
+
+EMBED_VIDEO_BACKENDS = (
+    'embed_video.backends.YoutubeBackend',
+    # 'embed_video.backends.VimeoBackend',
+    # 'embed_video.backends.SoundCloudBackend',
+    # 'news.backends.CustomBackend',
+)

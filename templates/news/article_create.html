@@ -29,6 +29,9 @@
                     </div>
                     <div class="form-group row">
                         <label>
+                            {% render_field form.video class="form-control boxed" placeholder="youtube video optional" %}
+                        </label>
+                        <label>
                             {% render_field form.status class="radio" %}
                             <span>Status</span>
                         </label>
@@ -86,5 +89,9 @@
 
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+    $('.django-ckeditor-widget').css('display', 'inline');
+</script>
 
 {% endblock %}

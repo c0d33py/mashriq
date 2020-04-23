@@ -5,6 +5,7 @@ from news.models import Article
 from news.forms import ArticleForm
 from .models import Article
 from django.views.generic import (
+    View,
     CreateView,
     ListView,
     DetailView,
@@ -25,11 +26,11 @@ def index(request):
         tags__exact='1').exclude(pk__in=featured_articles)[:7]
 
     # international
-    worlds = Article.status_objects.filter(featured=True, tags__exact='2')[:1]
+    worlds = Article.status_objects.filter(featured=True, tags__exact='2')[:2]
     worldlists = Article.status_objects.filter(
         tags__exact='2').exclude(featured=True)[:4]
-    # business
-    Business = Article.status_objects.filter(tags__exact='5')[:4]
+    # videos
+    videos = Article.objects.filter(status=True, tags__exact='5')[:4]
     #  columns
     featured_column = Article.status_objects.filter(
         featured=True, tags__exact='4')[:1]
@@ -40,9 +41,10 @@ def index(request):
     sportslist = Article.status_objects.filter(tags__exact='3'
                                                ).exclude(featured=True)[:4]
     # showbiz sidebar
-    latest = Article.status_objects.all()[:5]
-    footer = Article.status_objects.all()[:2]
-    showbizs = Article.status_objects.filter(tags__exact='4')[:5]
+    latest = Article.status_objects.all().exclude(tags__exact='5')[:5]
+    footer = Article.status_objects.all().exclude(tags__exact='5')[:2]
+    showbizs = Article.status_objects.filter(
+        tags__exact='4').exclude(tags__exact='5')[:5]
 
     context = {
         'carousels': carousels,
@@ -51,7 +53,7 @@ def index(request):
         'nationallist': regular_articles,
         'worlds': worlds,
         'worldlists': worldlists,
-        'business': Business,
+        'videos': videos,
         'featured_column': featured_column,
         'regular_column': regular_column,
         'sports': sports,
@@ -145,6 +147,26 @@ def business(request):
     return render(request, 'news/business.html', context)
 
 
+# videos
+def videos(request):
+    obj = Article.objects.filter(status=True, tags__exact='5')
+
+    latest = Article.status_objects.all()[:5]
+    showbizs = Article.status_objects.filter(tags__exact='4')[:5]
+    footer = Article.status_objects.all()[:2]
+
+    context = {
+        'object': obj,
+        'showbizs': showbizs,
+        'latest': latest,
+        'footer': footer,
+        'title': ' ویڈیوز',
+        'videos': 'active',
+
+    }
+    return render(request, 'news/videos.html', context)
+
+
 # showbiz detail views
 def showbiz(request):
     obj = Article.status_objects.filter(tags__exact='4')
@@ -215,6 +237,18 @@ def NewsDetail(request, pk):
     return render(request, 'news/detail.html', context)
 
 
+# videos detail page
+def VideoDetail(request, pk):
+    videos = get_object_or_404(Article, tags__exact='5', pk=pk)
+    related = videos.tags.similar_objects()[:3]
+
+    context = {
+        'videos': videos,
+        'related': related,
+    }
+    return render(request, 'news/detail.html', context)
+
+
 # admin side views
 # this view is class base and user authenticated
 # CreateViews
@@ -227,7 +261,6 @@ class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        print(form.cleaned_data)
         return super().form_valid(form)
 
     def get_success_url(self, **kwargs):

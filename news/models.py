@@ -1,4 +1,5 @@
 from ckeditor_uploader.fields import RichTextUploadingField
+from embed_video.fields import EmbedVideoField
 from taggit.managers import TaggableManager
 from django.contrib.auth.models import User
 from django.db import models
@@ -30,16 +31,17 @@ def article_path(instance, filename):
 
 class ArticleQuerySet(models.Manager):
     def get_queryset(self):
-        return super(ArticleQuerySet, self).get_queryset().filter(status=True)
+        return super(ArticleQuerySet, self).get_queryset().filter(status=True).exclude(tags__exact='5')
 
 
 class Article(models.Model):
     title = models.CharField(max_length=100)
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, blank=True, null=True)
+        User, on_delete=models.CASCADE)
     thumbnail = models.ImageField(default='def.jpg',
-                                  upload_to=article_path,
-                                  blank=True, help_text='(optional)')
+                                  upload_to=article_path)
+    # same like models.URLField()
+    video = EmbedVideoField(blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     content = RichTextUploadingField(blank=True)
     featured = models.BooleanField(default=False)
@@ -59,10 +61,9 @@ class Article(models.Model):
             Article.objects.filter(pk__in=(Article.objects.filter(
                 featured=True,).values_list('pk', flat=True)[:0])).update(featured=False)
             self.featured = True
+
         super(Article, self).save(*args, **kwargs)
-
         img = Image.open(self.thumbnail.path)
-
         if img.height > 400 or img.width > 700:
             output_size = (400, 700)
             img.thumbnail(output_size)

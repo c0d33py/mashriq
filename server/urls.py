@@ -9,6 +9,7 @@ urlpatterns = [
     path('admin/', views.Dashboard, name='dashboard'),
     path('django/', admin.site.urls),
     path('account/', include('accounts.urls')),
+    path('prompter/', include('prompter.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
 

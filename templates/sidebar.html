@@ -32,19 +32,47 @@
                     <ul>
                         <li>
                             <a href="{% url 'article-list' %}">
-                                <i class="fa fa-list"></i> Post list
+                                <i class="fa fa-list"></i> Post List
                             </a>
                         </li>
-                        
+
                         <li>
                             <a href="{% url 'article-draft' %}">
-                                <i class="fa fa-list"></i> Draft Post list
+                                <i class="fa fa-save"></i> Draft Post
                             </a>
                         </li>
-                        
+
                         <li>
                             <a href="{% url 'article-create' %}">
-                                <i class="fa fa-edit"></i> Post editor
+                                <i class="fa fa-edit"></i> Create New
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+
+                    <a href="">
+                        <i class="fa fa-bullhorn"></i> Prompter
+                        <i class="fa arrow"></i>
+
+                    </a>
+
+                    <ul>
+                        <li>
+                            <a href="{% url 'promp-list' %}">
+                                <i class="fa fa-list"></i> Prompters
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'promp-draft' %}">
+                                <i class="fa fa-save"></i> Draft List
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'promp-create' %}">
+                                <i class="fa fa-edit"></i> Create New
                             </a>
                         </li>
                     </ul>

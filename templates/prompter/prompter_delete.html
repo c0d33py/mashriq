@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+<div class="col-xl-12">
+    <div class="card card-warning ">
+        <div class="card-header" style="text-align: center;">
+            <div class="header-block">
+                <p class="title" style="color: aliceblue;">Are you sure you wan to delete the post "{{ object.title }}
+                </p>
+            </div>
+        </div>
+        <div class="card-block">
+            <form method="POST">{% csrf_token %}
+                <div class="form-group">
+                    <div class="col-sm-6">
+                        <button class="btn btn-danger btn-block" type="submit">Yes, Delete</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <a class="btn btn-primary btn-block" href="{% url 'article-detail' pk=object.pk %}">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

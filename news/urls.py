@@ -9,7 +9,6 @@ from .views import (ArticleListView,
                     ArticleUpdateView,
                     ArticleDeleteView
                     )
-
 sitemaps = {
     'static': StaticViewSitemap,
     'news': NewsSitemap,
@@ -25,7 +24,9 @@ urlpatterns = [
     path('business/', views.business, name='news-business'),
     path('showbiz/', views.showbiz, name='news-showbiz'),
     path('sports/', views.sports, name='news-sports'),
-    path('news/<int:pk>/detail/', views.NewsDetail, name='news-detail'),
+    path('videos/', views.videos, name='news-videos'),
+    path('news/detail/<int:pk>/', views.NewsDetail, name='news-detail'),
+    path('video/detail/<int:pk>/', views.VideoDetail, name='video-detail'),
     path('news/live/', views.Live, name='news-streem'),
     # sitemap
     path('sitemap.xml/', sitemap, {'sitemaps': sitemaps},

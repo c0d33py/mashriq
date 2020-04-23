@@ -1,4 +1,5 @@
 {% extends 'news/base.html' %}
+{% load embed_video_tags %}
 {% load social_share %}
 {% block body %}
 <div class="newstricker_inner">
@@ -19,6 +20,14 @@
                 <div class="theiaStickySidebar">
                     <div class="post_details_inner">
                         <div class="post_details_block">
+                            {% if videos %}
+
+                            {% video videos.video as my_video %}
+                            {% video my_video 'medium' %}
+                            {% endvideo %}
+
+                            {% else %}
+                            <br>
                             <figure class="social-icon">
                                 <img src="{{ object.thumbnail.url }}" class="img-responsive" alt="" />
                                 <div>
@@ -47,12 +56,19 @@
 
                                 </div>
                             </figure>
+
                             <h2>{{ object.title }}</h2>
                             <ul class="authar-info">
                                 <li><a href="#" class="link">by {{ object.author.username }}</a></li><br>
                                 <li>{{ object.timestamp }}</li>
+                                {% for cat in object.tags.all %}
+                                <li>{{ cat }}</li>
+                                {% endfor %}
                             </ul>
                             <p>{{ object.content|safe }}</p>
+
+                            {% endif %}
+
                         </div>
                         <!-- Post footer -->
                         <div class="post-footer">
