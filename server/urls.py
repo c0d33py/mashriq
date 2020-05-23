@@ -11,6 +11,7 @@ urlpatterns = [
     path('account/', include('accounts.urls')),
     path('prompter/', include('prompter.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('robots.txt/', include('robots.urls')),
 ]
 
 

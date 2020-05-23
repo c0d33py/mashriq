@@ -1,16 +1,6 @@
 {% extends 'news/base.html' %}
 {% load embed_video_tags %}
 {% block body %}
-<div class="newstricker_inner">
-    <div class="trending"><strong>اہم خبریں</strong></div>
-    <div id="NewsTicker-rtl" class="owl-carousel owl-theme">
-        <div class="item">
-            <a href="#">حادثے میں شوہر کے جسم کا 90 فیصد جب کہ بیوی کے جسم کا 10 فیصد حصہ متاثر ہوا،32 سالہ شخص کی حالت
-                تشویشناک</a>
-        </div>
-    </div>
-</div>
-
 <!-- START POST BLOCK SECTION -->
 <section class="slider-inner">
     <div class="container">
@@ -41,7 +31,7 @@
                     {% for slider in sliders %}
                     <div class="col-xs-6 col-sm-6 col-md-6 thm-padding">
                         <div class="slider-post post-height-2">
-                            <a href="{% url 'news-detail' pk=slider.pk %}" class="news-image"><img
+                            <a href="{{ slider.get_absolute_url }}" class="news-image"><img
                                     src="{{ slider.thumbnail.url }}" alt="" class="img-responsive"></a>
                             <div class="post-text">
                                 <h4><a href="#">{{ slider.title }}</a></h4>
@@ -197,21 +187,13 @@
                             <!-- item one -->
                             <div class="item">
                                 <div class="row">
-                                    {% for buis in videos%}
+                                    {% for vid in videos %}
                                     <div class="col-sm-6 main-post-inner bord-right">
                                         <div class="more-post">
-                                            <a href="{% url 'video-detail' pk=buis.pk %}" class="news-image"><img
-                                                    src="{{ buis.thumbnail.url }}" alt="" class="img-responsive"></a>
-                                            <div class="post-text">
-                                                <h4><a href="#">{{ buis.title }}</a>
-                                                </h4>
-                                                {% for cat in buis.categories.all %}
-                                                <span class="post-category">{{ cat.name }}</span>
-                                                {% endfor %}
-                                                <ul class="authar-info">
-                                                    <li><i class="ti-timer"></i>{{ buis.timestamp | timesince }}</li>
-                                                </ul>
-                                            </div>
+                                            {% video vid.video as my_video %}
+                                            <a href="{% url 'video-detail' pk=vid.pk %}" class="news-image"><img
+                                                    src="{{ my_video.thumbnail }}" alt="" class="img-responsive"></a>
+                                            {% endvideo %}
                                         </div>
                                     </div>
                                     {% endfor %}

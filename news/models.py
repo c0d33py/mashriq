@@ -3,10 +3,13 @@ from embed_video.fields import EmbedVideoField
 from taggit.managers import TaggableManager
 from django.contrib.auth.models import User
 from django.db import models
-from django.urls import reverse
+from django.template.defaultfilters import slugify
+from unidecode import unidecode
+from django.shortcuts import reverse, redirect
 from PIL import Image
 from datetime import datetime
 import os
+from easy_thumbnails.fields import ThumbnailerImageField
 
 
 def set_filename_format(now, instance, filename):
@@ -36,10 +39,11 @@ class ArticleQuerySet(models.Manager):
 
 class Article(models.Model):
     title = models.CharField(max_length=100)
+    slug = models.SlugField(null=True, blank=True, max_length=100)
     author = models.ForeignKey(
         User, on_delete=models.CASCADE)
-    thumbnail = models.ImageField(default='def.jpg',
-                                  upload_to=article_path)
+    thumbnail = ThumbnailerImageField(default='def.jpg',
+                                      upload_to=article_path)
     # same like models.URLField()
     video = EmbedVideoField(blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
@@ -57,6 +61,11 @@ class Article(models.Model):
         ordering = ['-timestamp']
 
     def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+            if not self.slug:
+                self.slug = arabic_slugify(self.title)
+
         if self.featured == True:
             Article.objects.filter(pk__in=(Article.objects.filter(
                 featured=True,).values_list('pk', flat=True)[:0])).update(featured=False)
@@ -72,5 +81,17 @@ class Article(models.Model):
     def get_absolute_url(self):
         return reverse('news-detail', kwargs={'pk': self.pk})
 
+    # def get_absolute_url(self):
+    #     return reverse('news-detail', kwargs={'slug': self.slug})
+
     def get_success_url(self):
         return reverse('article-detail', kwargs={'pk': self.pk})
+
+
+def arabic_slugify(str):
+    str = str.replace(" ", "-")
+    str = str.replace(",", "-")
+    str = str.replace("(", "-")
+    str = str.replace(")", "")
+    str = str.replace("؟", "")
+    return str

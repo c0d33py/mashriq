@@ -2,16 +2,6 @@
 {% load embed_video_tags %}
 {% load social_share %}
 {% block body %}
-<div class="newstricker_inner">
-    <div class="trending"><strong>اہم خبریں</strong></div>
-    <div id="NewsTicker-rtl" class="owl-carousel owl-theme">
-        <div class="item">
-            <a href="#">حادثے میں شوہر کے جسم کا 90 فیصد جب کہ بیوی کے جسم کا 10 فیصد حصہ متاثر ہوا،32 سالہ شخص کی
-                حالت
-                تشویشناک</a>
-        </div>
-    </div>
-</div>
 <main class="page_main_wrapper">
     <div class="container">
         <div class="row row-m">
@@ -31,11 +21,13 @@
                             <figure class="social-icon">
                                 <img src="{{ object.thumbnail.url }}" class="img-responsive" alt="" />
                                 <div>
-                                    <!-- <a href="https://www.facebook.com/sharer.php?u=http://nexcop.com/{{ request.get_full_path|urlencode }}"
-                                        target="_blank"><i class="fa fa-facebook"></i></a> -->
+                                    <div class="fb-share-button" data-href="https://mashriq.com.pk" data-layout="button"
+                                        data-size="small"><a target="_blank"
+                                            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmashriq.com.pk%2F&amp;src=sdkpreparse"
+                                            class="fb-xfbml-parse-ignore">Share</a></div>
                                     {% autoescape on %}
 
-                                    {% with "http://nexcop.com/" as host %}
+                                    {% with "http://127.0.0.1:8000/news/detail/127/" as host %}
 
                                     {% with "twitter" as service %}
                                     <a href="https://www.facebook.com/sharer.php?u={{ host }}{{ request.get_full_path|urlencode }}&amp;text={{ object.title }}"

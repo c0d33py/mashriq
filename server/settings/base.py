@@ -8,6 +8,21 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 config.encoding = 'cp1251'
 SECRET_KEY = config('SECRET_KEY')
 
+ROBOTS_USE_SITEMAP = True
+ROBOTS_USE_HOST = False
+ROBOTS_USE_SCHEME_IN_HOST = True
+
+# django deploy
+# CSRF_COOKIE_SECURE = True
+
+META_FB_APPID = '925478811236066'
+
+# Keep our policy as strict as possible
+# CSP_DEFAULT_SRC = ("'none'",)
+# CSP_STYLE_SRC = ("'self'", 'fonts.googleapis.com')
+# CSP_SCRIPT_SRC = ("'self'",)
+# CSP_FONT_SRC = ("'self'", 'fonts.gstatic.com')
+# CSP_IMG_SRC = ("'self'",)
 
 SITE_ID = 1
 
@@ -15,21 +30,25 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sites',
-    'django.contrib.sitemaps',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
     'django.contrib.humanize',
 
     'accounts.apps.AccountsConfig',
     'news.apps.NewsConfig',
     'prompter.apps.PrompterConfig',
 
+    'easy_thumbnails',
+    'reset_migrations',
     'django_social_share',
     'widget_tweaks',
     'embed_video',
     'taggit',
+    'robots',
+    'meta',
     'crispy_forms',
     'django_extensions',
     'ckeditor',
@@ -42,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    # 'csp.middleware.CSPMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -106,6 +126,13 @@ CKEDITOR_CONFIGS = {
 }
 
 
+THUMBNAIL_ALIASES = {
+    '': {
+        'avatar': {'size': (100, 100), 'crop': False},
+    },
+}
+
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -120,3 +147,5 @@ EMBED_VIDEO_BACKENDS = (
     # 'embed_video.backends.SoundCloudBackend',
     # 'news.backends.CustomBackend',
 )
+
+ALLOW_UNICODE_SLUGS = True

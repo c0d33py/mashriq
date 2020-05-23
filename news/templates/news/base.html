@@ -1,40 +1,59 @@
 <!doctype html>
-{% load static %}
 <html lang="en">
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-{% if title %}
-<title>{{ title }}</title>
-{% else %}
-<title>Mashriq</title>
-{% endif %}
 
-<link href="{% static '/rtl/assets/css/jquery-ui.min.css' %}" rel="stylesheet" type="text/css" />
-<link href="{% static '/rtl/assets/css/bootstrap.rtl.full.min.css' %}" rel="stylesheet" type="text/css" />
-<link href="{% static '/rtl/assets/css/animate.min.css' %}" rel="stylesheet" type="text/css" />
-<link href="{% static '/rtl/assets/css/bootsnav/bootsnav.css' %}" rel="stylesheet" type="text/css" />
-<!-- youtube css -->
-<link href="{% static '/rtl/assets/css/RYPP.css' %}" rel="stylesheet" type="text/css" />
-<!-- font awesome -->
-<link href="{% static '/rtl/assets/css/font-awesome/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
-<link href="{% static '/rtl/assets/css/themify-icons/themify-icons.css' %}" rel="stylesheet" type="text/css" />
-<link href="{% static '/rtl/assets/css/OwlCarousel2-2.2.1/owl.carousel.min.css' %}" rel="stylesheet" type="text/css" />
-<link href="{% static '/rtl/assets/css/OwlCarousel2-2.2.1/owl.theme.default.min.css' %}" rel="stylesheet"
-    type="text/css" />
-<link href="{% static '/rtl/assets/css/style.css' %}" rel="stylesheet" type="text/css" />
-<link href="{% static '/rtl/assets/css/rtl-style.css' %}" rel="stylesheet" type="text/css" />
-<link href="{% static '/rtl/assets/nafeesnastaleeq/font.css' %}" rel="stylesheet" type="text/css" />
-<link href="{% static '/rtl/assets/css/main.css' %}" rel="stylesheet" type="text/css" />
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% if title %}
+    <title>{{ title }}</title>
+    {% endif %}
+    {% load static %}
+    <link href="{% static '/rtl/assets/css/jquery-ui.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static '/rtl/assets/css/bootstrap.rtl.full.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static '/rtl/assets/css/animate.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static '/rtl/assets/css/bootsnav/bootsnav.css' %}" rel="stylesheet" type="text/css" />
+    <!-- youtube css -->
+    <link href="{% static '/rtl/assets/css/RYPP.css' %}" rel="stylesheet" type="text/css" />
+    <!-- font awesome -->
+    <link href="{% static '/rtl/assets/css/font-awesome/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static '/rtl/assets/css/themify-icons/themify-icons.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static '/rtl/assets/css/OwlCarousel2-2.2.1/owl.carousel.min.css' %}" rel="stylesheet"
+        type="text/css" />
+    <link href="{% static '/rtl/assets/css/OwlCarousel2-2.2.1/owl.theme.default.min.css' %}" rel="stylesheet"
+        type="text/css" />
+    <link href="{% static '/rtl/assets/css/style.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static '/rtl/assets/css/rtl-style.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static '/rtl/assets/nafeesnastaleeq/font.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static '/rtl/assets/css/main.css' %}" rel="stylesheet" type="text/css" />
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=215867369489796&autoLogAppEvents=1"></script>
 </head>
 
 <body>
     {% include 'news/header.html' %}
     <main class="page_main_wrapper">
         <div class="container">
-            {% block body %}
-            {% endblock %}
+            <div class="newstricker_inner">
+                <div class="trending">
+                    <strong> اہم خبریں</strong>
+                </div>
+                <div id="NewsTicker-rtl" class="owl-carousel owl-theme">
+                    {% for ticker in latest %}
+                    <div class="item">
+                        <marquee behavior="scroll" direction="right" scrollamount="5">
+                            <a href="#">{{ ticker.title }}</a>
+                            <span>&raquo;</span>
+                        </marquee>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
+        {% block body %}
+        {% endblock %}
     </main>
 
 
@@ -48,6 +67,7 @@
     <script src="{% static '/rtl/assets/js/RYPP.js' %}" type="text/javascript"></script>
     <script src="{% static '/rtl/assets/js/OwlCarousel2-2.2.1/owl.carousel.min.js' %}" type="text/javascript"></script>
     <script src="{% static '/rtl/assets/js/custom.js' %}" type="text/javascript"></script>
+
 </body>
 
 </html>
