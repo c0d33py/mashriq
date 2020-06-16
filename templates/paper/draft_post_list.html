@@ -19,7 +19,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for article in articles %}
+                            {% for article in epapers %}
                             <tr>
                                 <td><a href="{% url 'article-detail' pk=article.pk %}">{{ article.title }}</a>
                                 </td>

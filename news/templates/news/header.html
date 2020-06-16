@@ -73,7 +73,8 @@
                     <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand hidden-sm hidden-md hidden-lg" href="/"><img
-                        src="{% static 'rtl/assets/img/mashriq-logo.jpg' %}" class="logo" alt=""></a>
+                        src="{% static 'rtl/assets/img/mashriq-logo.jpg' %}" class="logo"
+                        style=" height: 40px; width: 110px;" alt=""></a>
             </div>
             <!-- End Header Navigation -->
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -87,6 +88,7 @@
                     <li class="{{ showbiz }}"><a href="{% url 'news-showbiz' %}"> شوبز</a></li>
                     <li class="{{ sports }}"><a href="{% url 'news-sports' %}"> سپورٹس</a></li>
                     <li class="{{ videos }}"><a href="{% url 'news-videos' %}"> ویڈیوز</a></li>
+                    <li class="{{ paperHome }}"><a href="{% url 'paper-home' %}"> مشرق اخبار</a></li>
                     <li class="active"><a href="https://www.youtube.com/channel/UCTowW3WDjv0kGeyLWPOVTHA"
                             target="_blank"> <i class="fa fa-youtube-play fa-lg"></i> </a>
                     </li>

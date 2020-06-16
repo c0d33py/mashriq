@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+<section class="dark-grey-text">
+    <div class="row pr-lg-5">
+        <div class="col-md-6">
+            <div class="view">
+                <img src="{{ object.image.url }}" class="img-fluid" alt="smaple image">
+            </div>
+        </div>
+        <div class="col-md-5 d-flex align-items-center">
+            <div>
+                <div class="media-body">
+                    <img class="rounded-circle article-img" height="30" src="{{ user.profile.image.url }}">
+                    <strong class="mr-4">{{ user.username }}</strong>
+                    <a class="btn btn-warning btn-sm " href="{% url 'epaper-update' pk=object.pk %}">Update</a>
+                    <a class="btn btn-danger btn-sm " href="{% url 'epaper-delete' pk=object.pk %}">Delete</a>
+                    <a class="btn btn-primary btn-sm " href="{% url 'epaper-create' %}">Add New</a>
+                </div>
+                <hr>
+                <small>{{ object.title }} </small><br>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

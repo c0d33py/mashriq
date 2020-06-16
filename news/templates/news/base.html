@@ -36,24 +36,29 @@
     {% include 'news/header.html' %}
     <main class="page_main_wrapper">
         <div class="container">
+            <!--news tickers           -->
+            {% url 'paper-home' as epaper_url %}
+            {% if request.get_full_path == epaper_url %}
+            {% elif paper %}
+            {% else %}
             <div class="newstricker_inner">
-                <div class="trending">
-                    <strong> اہم خبریں</strong>
-                </div>
+                <div class="trending"><strong>اہم خبریں</strong></div>
                 <div id="NewsTicker-rtl" class="owl-carousel owl-theme">
                     {% for ticker in latest %}
                     <div class="item">
                         <marquee behavior="scroll" direction="right" scrollamount="5">
-                            <a href="#">{{ ticker.title }}</a>
-                            <span>&raquo;</span>
+                            <a href="{% url 'news-detail' pk=ticker.pk %}">{{ ticker.title }}
+                            </a>
                         </marquee>
                     </div>
                     {% endfor %}
                 </div>
             </div>
+            {% endif %}
+
+            {% block body %}
+            {% endblock %}
         </div>
-        {% block body %}
-        {% endblock %}
     </main>
 
 

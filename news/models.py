@@ -1,15 +1,15 @@
 from ckeditor_uploader.fields import RichTextUploadingField
+from easy_thumbnails.fields import ThumbnailerImageField
+from django.template.defaultfilters import slugify
 from embed_video.fields import EmbedVideoField
+from django.shortcuts import reverse, redirect
 from taggit.managers import TaggableManager
 from django.contrib.auth.models import User
-from django.db import models
-from django.template.defaultfilters import slugify
 from unidecode import unidecode
-from django.shortcuts import reverse, redirect
-from PIL import Image
 from datetime import datetime
+from django.db import models
+from PIL import Image
 import os
-from easy_thumbnails.fields import ThumbnailerImageField
 
 
 def set_filename_format(now, instance, filename):

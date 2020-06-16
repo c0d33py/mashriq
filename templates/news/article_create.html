@@ -56,10 +56,10 @@
                         </div>
                         <div class="card-block">
                             <div class="form-group">
-                                {% for cat in form.tags %}
+                                {% for cat in form.tags|slice:":6"   %}
                                 <div>
                                     <label for="{{ cat.id_for_label }}">
-                                        {{ cat }}
+                                        {{ cat |slice:":1"  }}
                                     </label>
                                 </div>
                                 {% endfor %}

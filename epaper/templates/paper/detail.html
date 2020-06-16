@@ -1,0 +1,54 @@
+{% extends 'news/base.html' %}
+{% load embed_video_tags %}
+{% load social_share %}
+{% block body %}
+<main class="page_main_wrapper">
+
+    <div class="container">
+        <!-- START MAIN CONTENT -->
+        <div class="row row-m">
+            <div class="col-sm-12  col-p main-content">
+                <div class="theiaStickySidebar">
+                    <img src="{{ object.image.url }}" alt="" class="img-responsive" style=" width: auto; height: auto;">
+                </div>
+
+
+
+                <!-- START RELATED ARTICLES -->
+                <div class="post-inner post-inner-2">
+                    <!--post header-->
+                    <div class="post-head">
+                        <h2 class="title"><strong>Related </strong> Articles</h2>
+                    </div>
+                    <!-- post body -->
+                    <div class="post-body">
+                        <div class="owl-carousel owl-theme post-slider-rtl">
+                            <!-- item one -->
+                            <div class="item">
+                                <div class="news-grid-2">
+                                    <div class="row row-margin">
+                                        {% for post in relat %}
+                                        <div class="col-xs-6 col-sm-2 col-md-2 col-padding">
+                                            <div class="grid-item">
+                                                <div class="grid-item-img">
+                                                    <a href="{% url 'paper-detail' pk=post.pk %}">
+                                                        <img src="{{ post.image.url }}" class="img-responsive" alt=""
+                                                            style="height: 210px; width: 144px;">
+                                                    </a>
+                                                </div>
+                                                <h5><a href="{% url 'paper-detail' pk=object.pk %}"
+                                                        class="title">{{ post.title }}</a></h5>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}

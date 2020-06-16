@@ -39,9 +39,14 @@ INSTALLED_APPS = [
 
     'accounts.apps.AccountsConfig',
     'news.apps.NewsConfig',
-    'prompter.apps.PrompterConfig',
+    'epaper.apps.EpaperConfig',
+    # 'prompter.apps.PrompterConfig',
 
+    'ads',
     'easy_thumbnails',
+    'filer',
+    'ads_txt',
+    'mptt',
     'reset_migrations',
     'django_social_share',
     'widget_tweaks',
@@ -62,6 +67,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     # 'csp.middleware.CSPMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -125,12 +131,15 @@ CKEDITOR_CONFIGS = {
     }
 }
 
-
-THUMBNAIL_ALIASES = {
-    '': {
-        'avatar': {'size': (100, 100), 'crop': False},
-    },
-}
+FILER_CANONICAL_URL = 'sharing/'
+THUMBNAIL_HIGH_RESOLUTION = True
+THUMBNAIL_PROCESSORS = (
+    'easy_thumbnails.processors.colorspace',
+    'easy_thumbnails.processors.autocrop',
+    # 'easy_thumbnails.processors.scale_and_crop',
+    'filer.thumbnail_processors.scale_and_crop_with_subject_location',
+    'easy_thumbnails.processors.filters',
+)
 
 
 MEDIA_URL = '/media/'
@@ -149,3 +158,4 @@ EMBED_VIDEO_BACKENDS = (
 )
 
 ALLOW_UNICODE_SLUGS = True
+TAGGIT_CASE_INSENSITIVE = True

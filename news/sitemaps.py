@@ -1,11 +1,12 @@
 from django.contrib.sitemaps import Sitemap
-from django.contrib.syndication.views import Feed
+from itertools import chain
 from django.urls import reverse
 from .models import Article
+from epaper.models import Epaper
 
 
 class StaticViewSitemap(Sitemap):
-    protocol = 'http'
+    protocol = 'https'
 
     def items(self):
         return [
@@ -16,6 +17,7 @@ class StaticViewSitemap(Sitemap):
             'news-business',
             'news-showbiz',
             'news-sports',
+            'paper-home',
         ]
 
     def location(self, item):
@@ -27,7 +29,12 @@ class NewsSitemap(Sitemap):
     priority = 0.9
 
     def items(self):
-        return Article.status_objects.all()
+        sitePaper = Epaper.status_objects.all()
+        siteNews = Article.status_objects.all()
+        site_list = list(
+            chain(sitePaper, siteNews)
+        )
+        return site_list
 
     def lastmod(self, obj):
         return obj.timestamp

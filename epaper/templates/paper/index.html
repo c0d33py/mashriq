@@ -1,0 +1,29 @@
+{% extends 'news/base.html' %}
+{% block body %}
+
+<div class="container">
+    <!-- START MAIN CONTENT -->
+    <div class="row row-m">
+        <div class="col-sm-12  col-p main-content" style="text-align: -webkit-center;">
+            <div class="theiaStickySidebar">
+                <div class="post-inner categoty-style-1">
+                    <div class="post-head">
+                        <h2 class="title"> epaper </h2>
+                    </div>
+                    <!-- post body -->
+                    <div class="post-body">
+                        <div class="row row-m">
+                            {% for object in images|slice:":1" %}
+
+                            <a href="{% url 'paper-detail' pk=object.pk %}">
+                                <img src="{{ object.image.url }}" alt="" class="img-responsive"
+                                    style=" width: 400px; height: 500px;"></a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

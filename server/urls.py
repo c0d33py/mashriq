@@ -6,12 +6,15 @@ from . import views
 
 urlpatterns = [
     path('', include('news.urls')),
+    path('epaper/', include('epaper.urls')),
     path('admin/', views.Dashboard, name='dashboard'),
     path('django/', admin.site.urls),
     path('account/', include('accounts.urls')),
-    path('prompter/', include('prompter.urls')),
+    # path('prompter/', include('prompter.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('robots.txt/', include('robots.urls')),
+    path('filer/', include('filer.urls')),
+    path('ads.txt', include('ads_txt.urls')),
 ]
 
 
