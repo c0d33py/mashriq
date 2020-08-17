@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from news.models import Article
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
 from news.forms import ArticleForm
+from news.models import Article
 from .models import Article
 from django.views.generic import (
     View,
@@ -70,6 +71,10 @@ def index(request):
 # latest post Detail views
 def Latest(request):
     obj = Article.status_objects.all()
+
+    paginator = Paginator(obj, 1)
+    page = request.GET.get('page')
+    obj = paginator.get_page(page)
 
     latest = Article.status_objects.all()[:5]
     showbizs = Article.status_objects.filter(tags__exact='4')[:5]

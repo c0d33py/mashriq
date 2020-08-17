@@ -2,72 +2,69 @@
 {% load embed_video_tags %}
 {% load social_share %}
 {% block body %}
-<main class="page_main_wrapper">
-    <div class="container">
-        <div class="row row-m">
-            <!-- START MAIN CONTENT -->
-            <div class="col-sm-8 col-p  main-content">
-                <div class="theiaStickySidebar">
-                    <div class="post_details_inner">
-                        <div class="post_details_block">
-                            {% if videos %}
+<div class="container">
 
-                            {% video videos.video as my_video %}
-                            {% video my_video 'medium' %}
-                            {% endvideo %}
+    <div class="row row-m">
+        <!-- START MAIN CONTENT -->
+        <div class="col-sm-8 col-p  main-content">
+            <div class="theiaStickySidebar">
+                <div class="post_details_inner">
+                    <div class="post_details_block">
+                        {% if videos %}
 
-                            {% else %}
-                            <br>
-                            <figure class="social-icon">
-                                <img src="{{ object.thumbnail.url }}" class="img-responsive" alt="" />
-                                <div>
-                                    <div class="fb-share-button" data-href="https://mashriq.com.pk" data-layout="button"
-                                        data-size="small"><a target="_blank"
-                                            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmashriq.com.pk%2F&amp;src=sdkpreparse"
-                                            class="fb-xfbml-parse-ignore">Share</a></div>
-                                    {% autoescape on %}
+                        {% video videos.video as my_video %}
+                        {% video my_video 'medium' %}
+                        {% endvideo %}
 
-                                    {% with "http://127.0.0.1:8000/news/detail/127/" as host %}
+                        {% else %}
+                        <br>
+                        <figure class="social-icon">
+                            <img src="{{ object.thumbnail.url }}" class="img-responsive" alt="" />
+                            <div>
 
-                                    {% with "twitter" as service %}
-                                    <a href="https://www.facebook.com/sharer.php?u={{ host }}{{ request.get_full_path|urlencode }}&amp;text={{ object.title }}"
-                                        target="_blank">
-                                        <i class="fa fa-facebook"></i></a>
-                                    {% endwith%}
+                                {% autoescape on %}
 
-                                    {% with "twitter" as service %}
-                                    <a href="http://twitter.com/share?url={{ host }}{{ page_url }}&amp;text={{ object.title }}"
-                                        target="_blank">
-                                        <i class="fa fa-twitter"></i></a>
-                                    {% endwith%}
+                                {% with "https://mashriq.com.pk/" as host %}
 
-                                    {% endwith %}
+                                <a href="https://www.facebook.com/sharer.php?u={{ host }}{{ request.get_full_path|urlencode }}"
+                                    target="_blank"><i class="fa fa-facebook"></i>
+                                </a>
 
-                                    {% endautoescape %}
+                                <a href="http://twitter.com/share?url={{ host }}{{ request.get_full_path|urlencode }}&amp;text={{ object.title }}"
+                                    target="_blank"><i class="fa fa-twitter"></i>
+                                </a>
+
+                                <a href="https://api.whatsapp.com/send?text={{ host }}{{ request.get_full_path|urlencode }}"
+                                    target="_blank"><i class="fa fa-whatsapp"></i>
+                                </a>
+
+                                {% endwith %}
+
+                                {% endautoescape %}
 
 
-                                </div>
-                            </figure>
+                            </div>
+                        </figure>
 
-                            <h2>{{ object.title }}</h2>
-                            <ul class="authar-info">
-                                <li><a href="#" class="link">by {{ object.author.username }}</a></li><br>
-                                <li>{{ object.timestamp }}</li>
-                                {% for cat in object.tags.all %}
-                                <li>{{ cat }}</li>
-                                {% endfor %}
-                            </ul>
-                            <p>{{ object.content|safe }}</p>
+                        <h2>{{ object.title }}</h2>
+                        <ul class="authar-info">
+                            <li><a href="#" class="link">by {{ object.author.username }}</a></li><br>
+                            <li>{{ object.timestamp }}</li>
+                            {% for cat in object.tags.all %}
+                            <li>{{ cat }}</li>
+                            {% endfor %}
+                        </ul>
+                        <p>{{ object.content|safe }}</p>
 
-                            {% endif %}
+                        {% endif %}
 
-                        </div>
-                        <!-- Post footer -->
-                        <div class="post-footer">
-                            <div class="row thm-margin">
-                                <div class="col-xs-12 col-sm-12 col-md-12 thm-padding">
-                                    <!-- pagination -->
-                                    <!-- <ul class="pagination">
+                    </div>
+                    <!-- Post footer -->
+                    <div class="post-footer">
+                        <div class="row thm-margin">
+                            <div class="col-xs-12 col-sm-12 col-md-12 thm-padding">
+                                <!-- pagination -->
+                                <!-- <ul class="pagination">
                                         <li class="disabled"><span class="ti-angle-left"></span></li>
                                         <li class="active"><span>1</span></li>
                                         <li><a href="#">2</a></li>
@@ -78,43 +75,52 @@
                                         <li><a href="#">12</a></li>
                                         <li><a href="#"><i class="ti-angle-right"></i></a></li>
                                     </ul>  -->
-                                    <!-- /.pagination -->
-                                </div>
+                                <!-- /.pagination -->
                             </div>
                         </div>
                     </div>
-                    <!-- START RELATED ARTICLES -->
-                    <div class="post-inner post-inner-2">
-                        <!--post header-->
-                        <div class="post-head">
-                            <h2 class="title"><strong>Related </strong> Articles</h2>
-                        </div>
-                        <!-- post body -->
-                        <div class="post-body">
-                            <div class="owl-carousel owl-theme post-slider-rtl">
-                                <!-- item one -->
-                                <div class="item">
-                                    <div class="news-grid-2">
-                                        <div class="row row-margin">
-                                            {% for post in related %}
-                                            <div class="col-xs-6 col-sm-4 col-md-4 col-padding">
-                                                <div class="grid-item">
-                                                    <div class="grid-item-img">
-                                                        <a href="#">
-                                                            <img src="{{ post.thumbnail.url }}" class="img-responsive"
-                                                                alt="">
-                                                            <div class="link-icon"><i class="fa fa-play"></i></div>
-                                                        </a>
-                                                    </div>
-                                                    <h5><a href="#" class="title">{{ post.title }}</a></h5>
-                                                    <h5><a href="#" class="title">{{ post.name }}</a></h5>
-                                                    <ul class="authar-info">
-                                                        <li>{{ post.timestamp | timesince }}</li>
-                                                    </ul>
+                </div>
+                <!-- START RELATED ARTICLES -->
+                <div class="post-inner post-inner-2">
+                    <!--post header-->
+                    <div class="post-head">
+                        <h2 class="title"><strong>Related </strong> Articles</h2>
+                    </div>
+                    <!-- post body -->
+                    <div class="post-body">
+                        <div class="owl-carousel owl-theme post-slider-rtl">
+                            <!-- item one -->
+                            <div class="item">
+                                <div class="news-grid-2">
+                                    <div class="row row-margin">
+                                        {% for post in related %}
+                                        <div class="col-xs-6 col-sm-4 col-md-4 col-padding">
+                                            <div class="grid-item">
+                                                <div class="grid-item-img">
+                                                    {% if videos %}
+                                                    {% video post.video as my_video %}
+                                                    <a href="{% url 'video-detail' pk=post.pk %}">
+                                                        <img src="{{ my_video.thumbnail }}" class="img-responsive"
+                                                            alt="">
+                                                        <div class="link-icon"><i class="fa fa-play"></i></div>
+                                                    </a>
+                                                    {% endvideo %}
+                                                    {% else %}
+                                                    <a href="{% url 'news-detail' pk=post.pk %}">
+                                                        <img src="{{ post.thumbnail.url }}" class="img-responsive"
+                                                            alt="">
+                                                        <div class="link-icon"><i class="fa fa-play"></i></div>
+                                                    </a>
+                                                    {% endif %}
                                                 </div>
+                                                <h5><a href="#" class="title">{{ post.title }}</a></h5>
+                                                <h5><a href="#" class="title">{{ post.name }}</a></h5>
+                                                <ul class="authar-info">
+                                                    <li>{{ post.timestamp | timesince }}</li>
+                                                </ul>
                                             </div>
-                                            {% endfor %}
                                         </div>
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>
@@ -122,9 +128,9 @@
                     </div>
                 </div>
             </div>
-            <!-- START SIDE CONTENT -->
-            {% include 'news/side_content.html' %}
         </div>
+        <!-- START SIDE CONTENT -->
+        {% include 'news/side_content.html' %}
     </div>
-</main>
+</div>
 {% endblock %}

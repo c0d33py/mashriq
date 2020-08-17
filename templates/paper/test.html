@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+</head>
+
+<body>
+    <input type="text" class="tags" autocomplete="off">
+    <input type="text" class="timestamp" autocomplete="off">
+
+
+    <input type="text" class="first" placeholder="type here">
+    <input type="text" class="second" placeholder="here it is the reuslt">
+
+
+    <script>
+        $(".tags").on('keydown', function () {
+            $(".timestamp").val($(this).val());
+        });
+
+
+        $(".first").on('keydown', function () {
+            $(".second").val($(this).val());
+        });
+    </script>
+</body>
+
+</html>

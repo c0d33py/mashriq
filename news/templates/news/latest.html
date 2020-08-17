@@ -40,21 +40,16 @@
                     <!-- Post footer -->
                     <div class="post-footer">
                         <div class="row thm-margin">
+                            {% if object.paginator.num_pages > 1 %}
                             <div class="col-xs-12 col-sm-12 col-md-12 thm-padding">
-                                <!-- pagination -->
-                                <ul class="pagination">
-                                    <li class="disabled"><span class="ti-angle-left"></span></li>
-                                    <li class="active"><span>1</span></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li class="disabled"><span class="extend">...</span></li>
-                                    <li>
-                                    <li><a href="#">12</a></li>
-                                    <li><a href="#"><i class="ti-angle-right"></i></a></li>
-                                </ul> <!-- /.pagination -->
+                                {% include 'paper/_pagination.html' with items=object %}
                             </div>
+                            {% endif %}
                         </div>
-                    </div> <!-- /.Post footer-->
+
+
+                    </div>
+                    <!-- /.Post footer-->
                 </div>
             </div>
         </div>

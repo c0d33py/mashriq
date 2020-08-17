@@ -1,7 +1,6 @@
-from django.contrib import admin
-from django.contrib.auth.models import Group
-
 from ckeditor.widgets import CKEditorWidget
+from django.contrib.auth.models import Group
+from django.contrib import admin
 from .models import Article
 
 

@@ -4,18 +4,15 @@ from decouple import config
 BASE_DIR = os.path.dirname(os.path.dirname(
     os.path.dirname(os.path.abspath(__file__))))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-
+# secret keys
 config.encoding = 'cp1251'
 SECRET_KEY = config('SECRET_KEY')
-
+# django robots.txt
 ROBOTS_USE_SITEMAP = True
 ROBOTS_USE_HOST = False
 ROBOTS_USE_SCHEME_IN_HOST = True
-
 # django deploy
-# CSRF_COOKIE_SECURE = True
-
-META_FB_APPID = '925478811236066'
+CSRF_COOKIE_SECURE = True
 
 # Keep our policy as strict as possible
 # CSP_DEFAULT_SRC = ("'none'",)
@@ -25,6 +22,7 @@ META_FB_APPID = '925478811236066'
 # CSP_IMG_SRC = ("'self'",)
 
 SITE_ID = 1
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -40,25 +38,21 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'news.apps.NewsConfig',
     'epaper.apps.EpaperConfig',
-    # 'prompter.apps.PrompterConfig',
 
-    'ads',
-    'easy_thumbnails',
-    'filer',
-    'ads_txt',
-    'mptt',
-    'reset_migrations',
     'django_social_share',
-    'widget_tweaks',
-    'embed_video',
-    'taggit',
-    'robots',
-    'meta',
-    'crispy_forms',
     'django_extensions',
-    'ckeditor',
     'ckeditor_uploader',
     'multiselectfield',
+    'reset_migrations',
+    'django_filters',
+    'widget_tweaks',
+    'embed_video',
+    'ckeditor',
+    'ads_txt',
+    'robots',
+    'taggit',
+    'meta',
+    'ads',
 ]
 
 MIDDLEWARE = [
@@ -104,7 +98,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -112,6 +105,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'assets'),
 )
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CKEDITOR_UPLOAD_PATH = 'article/'
 CKEDITOR_IMAGE_BACKEND = "pillow"
@@ -131,30 +126,13 @@ CKEDITOR_CONFIGS = {
     }
 }
 
-FILER_CANONICAL_URL = 'sharing/'
-THUMBNAIL_HIGH_RESOLUTION = True
-THUMBNAIL_PROCESSORS = (
-    'easy_thumbnails.processors.colorspace',
-    'easy_thumbnails.processors.autocrop',
-    # 'easy_thumbnails.processors.scale_and_crop',
-    'filer.thumbnail_processors.scale_and_crop_with_subject_location',
-    'easy_thumbnails.processors.filters',
-)
-
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-
+'''Login redirects'''
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGOUT_REDIRECT_URL = 'login'
 
 EMBED_VIDEO_BACKENDS = (
     'embed_video.backends.YoutubeBackend',
-    # 'embed_video.backends.VimeoBackend',
-    # 'embed_video.backends.SoundCloudBackend',
-    # 'news.backends.CustomBackend',
 )
 
 ALLOW_UNICODE_SLUGS = True

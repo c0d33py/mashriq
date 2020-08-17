@@ -7,4 +7,4 @@ class EpaperForm(forms.ModelForm):
 
     class Meta:
         model = Epaper
-        fields = ['title', 'image', 'tags', 'status']
+        fields = ['title', 'image', 'tags', 'status', 'timestamp']

@@ -6,16 +6,12 @@ DEBUG = False
 ALLOWED_HOSTS = ['localhost']
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'db_django',
-#         'USER': 'postgres',
-#         'PASSWORD': 'shadow',
-#         'HOST': '182.180.122.66',
-#         'PORT': '5432'
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 
 # Password validation

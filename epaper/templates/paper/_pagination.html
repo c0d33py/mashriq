@@ -1,0 +1,34 @@
+<!-- Post footer -->
+<!-- pagination -->
+{% if items.has_other_pages %}
+<ul class="pagination">
+    {% if items.has_previous %}
+    <li><a href="?page={{ items.previous_page_number }}"><span><i class="ti-angle-left"></i></span></a></li>
+    {% else %}
+    <li class="disabled"><span><i class="ti-angle-left"></i></span></li>
+    {% endif %}
+
+    {% for i in items.paginator.page_range %}
+
+    {% if items.number == i %}
+    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+
+    {% elif i > items.number|add:'-3' and i < items.number|add:'3' %}
+
+    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+
+    {% endif %}
+
+    {% endfor %}
+
+
+    {% if items.has_next %}
+    <li><a href="?page={{ items.next_page_number }}"><span class="ti-angle-right"></span></a></li>
+    {% else %}
+    <li class="disabled"><span class="ti-angle-right"></span></li>
+    {% endif %}
+</ul>
+{% endif %}
+<!-- pagination -->
+
+<!-- <li class="disabled"><span class="extend">...</span></li> -->

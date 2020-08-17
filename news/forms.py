@@ -1,7 +1,7 @@
 from django.forms.widgets import CheckboxSelectMultiple
-from django import forms
 from taggit.models import Tag
 from . models import Article
+from django import forms
 
 
 class ArticleForm(forms.ModelForm):

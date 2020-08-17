@@ -2,8 +2,9 @@
 {% load widget_tweaks %}
 {% load static %}
 {% block body %}
-<script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
-<script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+
 <script>
     var loadFile = function (event) {
         var image = document.getElementById('output');
@@ -21,10 +22,10 @@
 
                 <div class="col-md-8">
                     <div class="form-group row">
-                        {% render_field form.title type="text" class="form-control boxed" placeholder="title place" %}
+                        {% render_field form.title type="text" class="form-control boxed" placeholder="title place" autocomplete="off" %}
                     </div>
                     <div class="form-group row">
-                        {% render_field form.tags type="date" class="form-control boxed" %}
+                        <input type="date" name="timestamp" id="id_timestamp" class="form-control timestamp">
                     </div>
                     <div class="form-group row">
                         <label>
@@ -39,10 +40,27 @@
 
                 <div class="col-xl-4" style="padding-left: 100px;">
 
-                    <div class="card card-success ">
-                        <div class="card-header">
+                    <div class="card card-info ">
+                        <div class="card-header" style="min-height: 35px;">
                             <div class="header-block">
-                                <p class="title">Image Upload</p>
+                                <p class="title" style="font-size: 15px;">Date Updated</p>
+                            </div>
+                        </div>
+                        <div class="card-block">
+                            <div class="form-group">
+                                <div class="images-container">
+                                    <div class="image-container new">
+                                        <input type="text" name="tags" id="id_tags" class="form-control tags">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card card-success ">
+                        <div class="card-header" style="min-height: 35px;">
+                            <div class="header-block">
+                                <p class="title" style="font-size: 15px;">Image Upload</p>
                             </div>
                         </div>
                         <div class="card-block">
@@ -57,9 +75,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </form>
     </div>
 </div>
-
+<script>
+    $(".timestamp").on('change', function () {
+        $(".tags").val($(this).val());
+    });
+</script>
 {% endblock %}

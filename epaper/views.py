@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
+from .filters import EpaperFilter
 from news.models import Article
 from .forms import EpaperForm
 from .models import Epaper
@@ -13,14 +15,18 @@ from django.views.generic import (
 )
 
 
-# index page of website
 def index(request):
-    images = Epaper.status_objects.all()
+    qs = Epaper.status_objects.all()
+    myfilter = EpaperFilter(request.GET, queryset=qs)
+    paginator = Paginator(qs, 3)
+    page = request.GET.get('page')
+    qs = paginator.get_page(page)
 
     footer = Article.status_objects.all().exclude(tags__exact='5')[:2]
 
     context = {
-        'images': images,
+        'myfilter': myfilter,
+        'items': qs,
         'footer': footer,
         'title': 'Epaper',
         'paperHome': 'active',

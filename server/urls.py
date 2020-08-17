@@ -1,7 +1,7 @@
 from django.conf.urls.static import static
-from django.conf import settings
-from django.contrib import admin
 from django.urls import path, include
+from django.contrib import admin
+from django.conf import settings
 from . import views
 
 urlpatterns = [
@@ -10,10 +10,8 @@ urlpatterns = [
     path('admin/', views.Dashboard, name='dashboard'),
     path('django/', admin.site.urls),
     path('account/', include('accounts.urls')),
-    # path('prompter/', include('prompter.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('robots.txt/', include('robots.urls')),
-    path('filer/', include('filer.urls')),
     path('ads.txt', include('ads_txt.urls')),
 ]
 

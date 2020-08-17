@@ -1,8 +1,8 @@
 from django.contrib.sitemaps import Sitemap
-from itertools import chain
+from epaper.models import Epaper
 from django.urls import reverse
 from .models import Article
-from epaper.models import Epaper
+from itertools import chain
 
 
 class StaticViewSitemap(Sitemap):
